@@ -1,0 +1,372 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<link href="coqdoc.css" rel="stylesheet" type="text/css" />
+<link href="coqdocjs.css" rel="stylesheet" type="text/css"/>
+<link href="toc.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="config.js"></script>
+<script type="text/javascript" src="coqdocjs.js"></script>
+</head>
+
+<body onload="document.getElementById('content').focus()">
+  <div id="header">
+    <span class="left">
+      <span class="modulename"> <script> document.write(document.title) </script> </span>
+      <span id="toggle-toc">Contents</span>
+    </span>
+
+    <span class="button" id="toggle-proofs"></span>
+
+    <span class="right">
+      <a href="https://github.com/AU-COBRA/ConCert" target="_balnk">Project Page</a>
+      <a href="index.html">Index</a>
+      <a href="toc.html">Table of contents</a>
+    </span>
+</div>
+  <div id="content" tabindex="-1" onblur="document.getElementById('content').focus()">
+    <div id="js-toc" class="toc" data-toc="h1,h2,h3,h4" data-toc-container="doc" data-toc-offset="-40">
+      <div id="js-toc-header" class="toc-header">Contents:</div>
+    </div>
+    <div id="main">
+<h1 class="libtitle">Library ConCert.Examples.Dexter2.Dexter2Tests</h1>
+
+<div class="code">
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Execution</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Execution.Blockchain.html#"><span class="id" title="library">Blockchain</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Execution</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Execution.BoundedN.html#"><span class="id" title="library">BoundedN</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Execution</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Execution.Containers.html#"><span class="id" title="library">Containers</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Execution</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Execution.Serializable.html#"><span class="id" title="library">Serializable</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Execution</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Execution.ResultMonad.html#"><span class="id" title="library">ResultMonad</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Execution.Test</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Execution.Test.QCTest.html#"><span class="id" title="library">QCTest</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Examples.Dexter2</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2CPMM.html#"><span class="id" title="library">Dexter2CPMM</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Examples.Dexter2</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2FA12.html#"><span class="id" title="library">Dexter2FA12</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Examples.Dexter2</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Gens.html#"><span class="id" title="library">Dexter2Gens</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Examples.Dexter2</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Printers.html#"><span class="id" title="library">Dexter2Printers</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Examples.FA2</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Examples.FA2.FA2Token.html#"><span class="id" title="library">FA2Token</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Examples.FA2</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Examples.FA2.FA2LegacyInterface.html#"><span class="id" title="library">FA2LegacyInterface</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">Coq</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.ZArith.ZArith_base.html#"><span class="id" title="library">ZArith_base</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">Coq</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#"><span class="id" title="library">List</span></a>.<br/>
+<span class="id" title="keyword">Import</span> <span class="id" title="var">ListNotations</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a id="lab342"></a><h1 class="section">Test setup</h1>
+<a id="lab343"></a><h2 class="section">Setup parameters</h2>
+
+</div>
+<div class="code">
+<span class="id" title="keyword">Definition</span> <a id="token_contract_base_addr" class="idref" href="#token_contract_base_addr"><span class="id" title="definition">token_contract_base_addr</span></a> : <a class="idref" href="ConCert.Execution.Blockchain.html#Address"><span class="id" title="method">Address</span></a> := <a class="idref" href="ConCert.Execution.Test.TestUtils.html#addr_of_Z"><span class="id" title="definition">addr_of_Z</span></a> 128.<br/>
+<span class="id" title="keyword">Definition</span> <a id="lqt_contract_base_addr" class="idref" href="#lqt_contract_base_addr"><span class="id" title="definition">lqt_contract_base_addr</span></a> : <a class="idref" href="ConCert.Execution.Blockchain.html#Address"><span class="id" title="method">Address</span></a> := <a class="idref" href="ConCert.Execution.Test.TestUtils.html#addr_of_Z"><span class="id" title="definition">addr_of_Z</span></a> 129.<br/>
+<span class="id" title="keyword">Definition</span> <a id="cpmm_contract_base_addr" class="idref" href="#cpmm_contract_base_addr"><span class="id" title="definition">cpmm_contract_base_addr</span></a> : <a class="idref" href="ConCert.Execution.Blockchain.html#Address"><span class="id" title="method">Address</span></a> := <a class="idref" href="ConCert.Execution.Test.TestUtils.html#addr_of_Z"><span class="id" title="definition">addr_of_Z</span></a> 130.<br/>
+<span class="id" title="keyword">Definition</span> <a id="null_address_" class="idref" href="#null_address_"><span class="id" title="definition">null_address_</span></a> : <a class="idref" href="ConCert.Execution.Blockchain.html#Address"><span class="id" title="method">Address</span></a> := <a class="idref" href="ConCert.Execution.Test.TestUtils.html#creator"><span class="id" title="definition">creator</span></a>.<br/>
+<span class="id" title="keyword">Definition</span> <a id="token_id_" class="idref" href="#token_id_"><span class="id" title="definition">token_id_</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Numbers.BinNums.html#N"><span class="id" title="inductive">N</span></a> := 1.<br/>
+<span class="id" title="keyword">Definition</span> <a id="initial_lqt" class="idref" href="#initial_lqt"><span class="id" title="definition">initial_lqt</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Numbers.BinNums.html#N"><span class="id" title="inductive">N</span></a> := 10.<br/>
+<span class="id" title="keyword">Definition</span> <a id="initial_tokens" class="idref" href="#initial_tokens"><span class="id" title="definition">initial_tokens</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Numbers.BinNums.html#N"><span class="id" title="inductive">N</span></a> := 500.<br/>
+
+<br/>
+<span class="id" title="keyword">Module</span> <a id="TestInfo" class="idref" href="#TestInfo"><span class="id" title="module">TestInfo</span></a> &lt;: <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Gens.html#Dexter2Info"><span class="id" title="module">Dexter2Info</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a id="TestInfo.accounts" class="idref" href="#TestInfo.accounts"><span class="id" title="definition">accounts</span></a> := <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">[</span></a><a class="idref" href="ConCert.Execution.Test.TestUtils.html#person_1"><span class="id" title="definition">person_1</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a> <a class="idref" href="ConCert.Execution.Test.TestUtils.html#person_2"><span class="id" title="definition">person_2</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a> <a class="idref" href="ConCert.Execution.Test.TestUtils.html#person_3"><span class="id" title="definition">person_3</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a> <a class="idref" href="ConCert.Execution.Test.TestUtils.html#person_4"><span class="id" title="definition">person_4</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a> <a class="idref" href="ConCert.Execution.Test.TestUtils.html#person_5"><span class="id" title="definition">person_5</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">]</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a id="TestInfo.gAddr" class="idref" href="#TestInfo.gAddr"><span class="id" title="definition">gAddr</span></a> (<a id="c:1" class="idref" href="#c:1"><span class="id" title="binder">c</span></a> : <a class="idref" href="ConCert.Execution.Blockchain.html#Chain"><span class="id" title="record">Chain</span></a>) := <span class="id" title="notation">elems</span> <span class="id" title="notation">[</span><a class="idref" href="ConCert.Execution.Test.TestUtils.html#person_1"><span class="id" title="definition">person_1</span></a><span class="id" title="notation">;</span> <a class="idref" href="ConCert.Execution.Test.TestUtils.html#person_2"><span class="id" title="definition">person_2</span></a><span class="id" title="notation">;</span> <a class="idref" href="ConCert.Execution.Test.TestUtils.html#person_3"><span class="id" title="definition">person_3</span></a><span class="id" title="notation">;</span> <a class="idref" href="ConCert.Execution.Test.TestUtils.html#person_4"><span class="id" title="definition">person_4</span></a><span class="id" title="notation">;</span> <a class="idref" href="ConCert.Execution.Test.TestUtils.html#person_5"><span class="id" title="definition">person_5</span></a><span class="id" title="notation">]</span>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a id="TestInfo.cpmm_contract_addr" class="idref" href="#TestInfo.cpmm_contract_addr"><span class="id" title="definition">cpmm_contract_addr</span></a> := <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#cpmm_contract_base_addr"><span class="id" title="definition">cpmm_contract_base_addr</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a id="TestInfo.token_contract_addr" class="idref" href="#TestInfo.token_contract_addr"><span class="id" title="definition">token_contract_addr</span></a> := <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#token_contract_base_addr"><span class="id" title="definition">token_contract_base_addr</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a id="TestInfo.token_id" class="idref" href="#TestInfo.token_id"><span class="id" title="definition">token_id</span></a> := <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#token_id_"><span class="id" title="definition">token_id_</span></a>.<br/>
+<span class="id" title="keyword">End</span> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#TestInfo"><span class="id" title="module">TestInfo</span></a>.<br/>
+<span class="id" title="keyword">Module</span> <a id="MG" class="idref" href="#MG"><span class="id" title="module">MG</span></a> := <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Gens.html#Dexter2Gens"><span class="id" title="module">Dexter2Gens</span></a> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#TestInfo"><span class="id" title="module">TestInfo</span></a>. <span class="id" title="keyword">Import</span> <span class="id" title="var">MG</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a id="lab344"></a><h2 class="section">Setup actions</h2>
+ Transfer some coins to each user address 
+</div>
+<div class="code">
+<span class="id" title="keyword">Definition</span> <a id="transfer_initial_funds" class="idref" href="#transfer_initial_funds"><span class="id" title="definition">transfer_initial_funds</span></a> := <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#map"><span class="id" title="definition">map</span></a> (<span class="id" title="keyword">fun</span> <a id="addr:2" class="idref" href="#addr:2"><span class="id" title="binder">addr</span></a> =&gt; <a class="idref" href="ConCert.Execution.Test.TestUtils.html#build_transfer"><span class="id" title="definition">TestUtils.build_transfer</span></a> <a class="idref" href="ConCert.Execution.Test.TestUtils.html#creator"><span class="id" title="definition">creator</span></a> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#addr:2"><span class="id" title="variable">addr</span></a> 8) <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#accounts"><span class="id" title="definition">TestInfo.accounts</span></a>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+We deploy the token contract with a single token id configured 
+</div>
+<div class="code">
+<span class="id" title="keyword">Definition</span> <a id="token_setup" class="idref" href="#token_setup"><span class="id" title="definition">token_setup</span></a> := {|<br/>
+&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.FA2.FA2Token.html#setup_total_supply"><span class="id" title="projection">setup_total_supply</span></a>        := <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#ddd65c2f7ee73ecec433744948d846bb"><span class="id" title="notation">[</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">(</span></a><a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#token_id_"><span class="id" title="definition">token_id_</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">,</span></a> 0%<span class="id" title="var">N</span><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">)</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#ddd65c2f7ee73ecec433744948d846bb"><span class="id" title="notation">]</span></a>; <span class="comment">(*&nbsp;Value&nbsp;not&nbsp;used&nbsp;*)</span><br/>
+&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.FA2.FA2Token.html#setup_tokens"><span class="id" title="projection">setup_tokens</span></a>              := <a class="idref" href="ConCert.Execution.Containers.html#FMap.of_list"><span class="id" title="abbreviation">FMap.of_list</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#ddd65c2f7ee73ecec433744948d846bb"><span class="id" title="notation">[</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">(</span></a><a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#token_id_"><span class="id" title="definition">token_id_</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">,</span></a> <a class="idref" href="ConCert.Examples.FA2.FA2LegacyInterface.html#Build_token_metadata"><span class="id" title="constructor">Build_token_metadata</span></a> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#token_id_"><span class="id" title="definition">token_id_</span></a> 18%<span class="id" title="var">N</span><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">)</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#ddd65c2f7ee73ecec433744948d846bb"><span class="id" title="notation">]</span></a>;<br/>
+&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.FA2.FA2Token.html#initial_permission_policy"><span class="id" title="projection">initial_permission_policy</span></a> := {|<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.FA2.FA2LegacyInterface.html#descr_self"><span class="id" title="projection">descr_self</span></a>      := <a class="idref" href="ConCert.Examples.FA2.FA2LegacyInterface.html#self_transfer_permitted"><span class="id" title="constructor">self_transfer_permitted</span></a>; <span class="comment">(*&nbsp;Allow&nbsp;self&nbsp;transfers&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.FA2.FA2LegacyInterface.html#descr_operator"><span class="id" title="projection">descr_operator</span></a>  := <a class="idref" href="ConCert.Examples.FA2.FA2LegacyInterface.html#operator_transfer_permitted"><span class="id" title="constructor">operator_transfer_permitted</span></a>; <span class="comment">(*&nbsp;All&nbsp;operator&nbsp;transfers&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.FA2.FA2LegacyInterface.html#descr_receiver"><span class="id" title="projection">descr_receiver</span></a>  := <a class="idref" href="ConCert.Examples.FA2.FA2LegacyInterface.html#owner_no_op"><span class="id" title="constructor">owner_no_op</span></a>; <span class="comment">(*&nbsp;Value&nbsp;not&nbsp;used&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.FA2.FA2LegacyInterface.html#descr_sender"><span class="id" title="projection">descr_sender</span></a>    := <a class="idref" href="ConCert.Examples.FA2.FA2LegacyInterface.html#owner_no_op"><span class="id" title="constructor">owner_no_op</span></a>; <span class="comment">(*&nbsp;Value&nbsp;not&nbsp;used&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.FA2.FA2LegacyInterface.html#descr_custom"><span class="id" title="projection">descr_custom</span></a>    := <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#None"><span class="id" title="constructor">None</span></a>; <span class="comment">(*&nbsp;Value&nbsp;not&nbsp;used&nbsp;*)</span><br/>
+&nbsp;&nbsp;|};<br/>
+&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.FA2.FA2Token.html#transfer_hook_addr_"><span class="id" title="projection">transfer_hook_addr_</span></a>       := <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#None"><span class="id" title="constructor">None</span></a>; <span class="comment">(*&nbsp;No&nbsp;transfer&nbsp;hook&nbsp;configured&nbsp;*)</span><br/>
+|}.<br/>
+<span class="id" title="keyword">Definition</span> <a id="deploy_token" class="idref" href="#deploy_token"><span class="id" title="definition">deploy_token</span></a> := <a class="idref" href="ConCert.Execution.Test.TestUtils.html#build_deploy"><span class="id" title="definition">build_deploy</span></a> <a class="idref" href="ConCert.Execution.Test.TestUtils.html#creator"><span class="id" title="definition">creator</span></a> 0 <a class="idref" href="ConCert.Examples.FA2.FA2Token.html#contract"><span class="id" title="definition">FA2Token.contract</span></a> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#token_setup"><span class="id" title="definition">token_setup</span></a>.<br/>
+</div>
+
+<div class="doc">
+Allow CPMM contract to operate on all user accounts' tokens 
+</div>
+<div class="code">
+<span class="id" title="keyword">Definition</span> <a id="setup_operators" class="idref" href="#setup_operators"><span class="id" title="definition">setup_operators</span></a> := <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#map"><span class="id" title="definition">map</span></a> (<span class="id" title="keyword">fun</span> <a id="addr:3" class="idref" href="#addr:3"><span class="id" title="binder">addr</span></a> =&gt; <a class="idref" href="ConCert.Execution.Test.TestUtils.html#build_call"><span class="id" title="definition">build_call</span></a> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#addr:3"><span class="id" title="variable">addr</span></a> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#token_contract_base_addr"><span class="id" title="definition">token_contract_base_addr</span></a> 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="ConCert.Examples.FA2.FA2Token.html#msg_update_operators"><span class="id" title="constructor">msg_update_operators</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#ddd65c2f7ee73ecec433744948d846bb"><span class="id" title="notation">[</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.FA2.FA2LegacyInterface.html#add_operator"><span class="id" title="constructor">add_operator</span></a> (<a class="idref" href="ConCert.Examples.FA2.FA2LegacyInterface.html#Build_operator_param"><span class="id" title="constructor">Build_operator_param</span></a> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#addr:3"><span class="id" title="variable">addr</span></a> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#cpmm_contract_base_addr"><span class="id" title="definition">cpmm_contract_base_addr</span></a> <a class="idref" href="ConCert.Examples.FA2.FA2LegacyInterface.html#all_tokens"><span class="id" title="constructor">all_tokens</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#ddd65c2f7ee73ecec433744948d846bb"><span class="id" title="notation">]</span></a>)<br/>
+&nbsp;&nbsp;) <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#accounts"><span class="id" title="definition">TestInfo.accounts</span></a>.<br/>
+</div>
+
+<div class="doc">
+Create tokens in some user accounts 
+</div>
+<div class="code">
+<span class="id" title="keyword">Definition</span> <a id="create_tokens" class="idref" href="#create_tokens"><span class="id" title="definition">create_tokens</span></a> := <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#map"><span class="id" title="definition">map</span></a> (<span class="id" title="keyword">fun</span> <a id="addr:4" class="idref" href="#addr:4"><span class="id" title="binder">addr</span></a> =&gt; <a class="idref" href="ConCert.Execution.Test.TestUtils.html#build_call"><span class="id" title="definition">build_call</span></a> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#addr:4"><span class="id" title="variable">addr</span></a> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#token_contract_base_addr"><span class="id" title="definition">token_contract_base_addr</span></a> 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="ConCert.Examples.FA2.FA2Token.html#msg_create_tokens"><span class="id" title="constructor">msg_create_tokens</span></a> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#token_id_"><span class="id" title="definition">token_id_</span></a>)<br/>
+&nbsp;&nbsp;) <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">[</span></a><a class="idref" href="ConCert.Execution.Test.TestUtils.html#person_1"><span class="id" title="definition">person_1</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a> <a class="idref" href="ConCert.Execution.Test.TestUtils.html#person_2"><span class="id" title="definition">person_2</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a> <a class="idref" href="ConCert.Execution.Test.TestUtils.html#person_3"><span class="id" title="definition">person_3</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">]</span></a>.<br/>
+</div>
+
+<div class="doc">
+Transfer initial token funds to CPMM contract 
+</div>
+<div class="code">
+<span class="id" title="keyword">Definition</span> <a id="transfer_cpmm_tokens" class="idref" href="#transfer_cpmm_tokens"><span class="id" title="definition">transfer_cpmm_tokens</span></a> := <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">[</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="ConCert.Execution.Test.TestUtils.html#build_call"><span class="id" title="definition">build_call</span></a> <a class="idref" href="ConCert.Execution.Test.TestUtils.html#creator"><span class="id" title="definition">creator</span></a> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#token_contract_base_addr"><span class="id" title="definition">token_contract_base_addr</span></a> 5 (<a class="idref" href="ConCert.Examples.FA2.FA2Token.html#msg_create_tokens"><span class="id" title="constructor">msg_create_tokens</span></a> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#token_id_"><span class="id" title="definition">token_id_</span></a>)<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="ConCert.Execution.Test.TestUtils.html#build_call"><span class="id" title="definition">build_call</span></a> <a class="idref" href="ConCert.Execution.Test.TestUtils.html#creator"><span class="id" title="definition">creator</span></a> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#token_contract_base_addr"><span class="id" title="definition">token_contract_base_addr</span></a> 0 (<a class="idref" href="ConCert.Examples.FA2.FA2Token.html#msg_transfer"><span class="id" title="constructor">msg_transfer</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#ddd65c2f7ee73ecec433744948d846bb"><span class="id" title="notation">[{|</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.FA2.FA2LegacyInterface.html#from_"><span class="id" title="projection">from_</span></a> := <a class="idref" href="ConCert.Execution.Test.TestUtils.html#creator"><span class="id" title="definition">creator</span></a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.FA2.FA2LegacyInterface.html#txs"><span class="id" title="projection">txs</span></a> := <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#ddd65c2f7ee73ecec433744948d846bb"><span class="id" title="notation">[{|</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.FA2.FA2LegacyInterface.html#to_"><span class="id" title="projection">to_</span></a> := <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#cpmm_contract_base_addr"><span class="id" title="definition">cpmm_contract_base_addr</span></a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.FA2.FA2LegacyInterface.html#dst_token_id"><span class="id" title="projection">dst_token_id</span></a> := <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#token_id_"><span class="id" title="definition">token_id_</span></a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.FA2.FA2LegacyInterface.html#amount"><span class="id" title="projection">amount</span></a> := 500%<span class="id" title="var">N</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#ddd65c2f7ee73ecec433744948d846bb"><span class="id" title="notation">|}]</span></a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.FA2.FA2LegacyInterface.html#sender_callback_addr"><span class="id" title="projection">sender_callback_addr</span></a> := <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#None"><span class="id" title="constructor">None</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#ddd65c2f7ee73ecec433744948d846bb"><span class="id" title="notation">|}]</span></a>)<br/>
+<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">]</span></a>.<br/>
+<span class="id" title="keyword">Definition</span> <a id="setup_token_contract" class="idref" href="#setup_token_contract"><span class="id" title="definition">setup_token_contract</span></a> :=<br/>
+&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#deploy_token"><span class="id" title="definition">deploy_token</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#::list_scope:x_'::'_x"><span class="id" title="notation">::</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#setup_operators"><span class="id" title="definition">setup_operators</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#bc347c51eaf667706ae54503b26d52c6"><span class="id" title="notation">++</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#create_tokens"><span class="id" title="definition">create_tokens</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#bc347c51eaf667706ae54503b26d52c6"><span class="id" title="notation">++</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#transfer_cpmm_tokens"><span class="id" title="definition">transfer_cpmm_tokens</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">Definition</span> <a id="lqt_setup" class="idref" href="#lqt_setup"><span class="id" title="definition">lqt_setup</span></a> := {|<br/>
+&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.Dexter2.Dexter2FA12.html#admin_"><span class="id" title="projection">admin_</span></a>        := <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#cpmm_contract_base_addr"><span class="id" title="definition">cpmm_contract_base_addr</span></a>;<br/>
+&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.Dexter2.Dexter2FA12.html#lqt_provider"><span class="id" title="projection">lqt_provider</span></a>  := <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#null_address_"><span class="id" title="definition">null_address_</span></a>;<br/>
+&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.Dexter2.Dexter2FA12.html#initial_pool"><span class="id" title="projection">initial_pool</span></a>  := <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#initial_lqt"><span class="id" title="definition">initial_lqt</span></a><br/>
+|}.<br/>
+<span class="id" title="keyword">Definition</span> <a id="deploy_lqt" class="idref" href="#deploy_lqt"><span class="id" title="definition">deploy_lqt</span></a> := <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#ddd65c2f7ee73ecec433744948d846bb"><span class="id" title="notation">[</span></a><a class="idref" href="ConCert.Execution.Test.TestUtils.html#build_deploy"><span class="id" title="definition">build_deploy</span></a> <a class="idref" href="ConCert.Execution.Test.TestUtils.html#creator"><span class="id" title="definition">creator</span></a> 0 <a class="idref" href="ConCert.Examples.Dexter2.Dexter2FA12.html#DEX2LQT.contract"><span class="id" title="definition">DEX2LQT.contract</span></a> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#lqt_setup"><span class="id" title="definition">lqt_setup</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#ddd65c2f7ee73ecec433744948d846bb"><span class="id" title="notation">]</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">Definition</span> <a id="cpmm_setup" class="idref" href="#cpmm_setup"><span class="id" title="definition">cpmm_setup</span></a> := {|<br/>
+&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.Dexter2.Dexter2CPMM.html#lqtTotal_"><span class="id" title="projection">lqtTotal_</span></a>     := <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#initial_lqt"><span class="id" title="definition">initial_lqt</span></a>;<br/>
+&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.Dexter2.Dexter2CPMM.html#manager_"><span class="id" title="projection">manager_</span></a>      := <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#null_address_"><span class="id" title="definition">null_address_</span></a>;<br/>
+&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.Dexter2.Dexter2CPMM.html#tokenAddress_"><span class="id" title="projection">tokenAddress_</span></a> := <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#token_contract_base_addr"><span class="id" title="definition">token_contract_base_addr</span></a>;<br/>
+&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.Dexter2.Dexter2CPMM.html#tokenId_"><span class="id" title="projection">tokenId_</span></a>      := <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#token_id_"><span class="id" title="definition">token_id_</span></a><br/>
+|}.<br/>
+<span class="id" title="keyword">Definition</span> <a id="deploy_cpmm" class="idref" href="#deploy_cpmm"><span class="id" title="definition">deploy_cpmm</span></a> := <a class="idref" href="ConCert.Execution.Test.TestUtils.html#build_deploy"><span class="id" title="definition">build_deploy</span></a> <a class="idref" href="ConCert.Execution.Test.TestUtils.html#creator"><span class="id" title="definition">creator</span></a> 0 <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Printers.html#DEX2.contract"><span class="id" title="definition">DEX2.contract</span></a> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#cpmm_setup"><span class="id" title="definition">cpmm_setup</span></a>.<br/>
+</div>
+
+<div class="doc">
+Transfer some tez to CPMM contract 
+</div>
+<div class="code">
+<span class="id" title="keyword">Definition</span> <a id="transfer_cpmm_xtz" class="idref" href="#transfer_cpmm_xtz"><span class="id" title="definition">transfer_cpmm_xtz</span></a> := <a class="idref" href="ConCert.Execution.Test.TestUtils.html#build_transfer"><span class="id" title="definition">TestUtils.build_transfer</span></a> <a class="idref" href="ConCert.Execution.Test.TestUtils.html#creator"><span class="id" title="definition">creator</span></a> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#cpmm_contract_base_addr"><span class="id" title="definition">cpmm_contract_base_addr</span></a> 5.<br/>
+</div>
+
+<div class="doc">
+Connect CPMM and Lqt token contracts 
+</div>
+<div class="code">
+<span class="id" title="keyword">Definition</span> <a id="set_lqt_address" class="idref" href="#set_lqt_address"><span class="id" title="definition">set_lqt_address</span></a> := <a class="idref" href="ConCert.Execution.Test.TestUtils.html#build_call"><span class="id" title="definition">build_call</span></a> <a class="idref" href="ConCert.Execution.Test.TestUtils.html#creator"><span class="id" title="definition">creator</span></a> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#cpmm_contract_base_addr"><span class="id" title="definition">cpmm_contract_base_addr</span></a> 0<br/>
+&nbsp;&nbsp;(@<a class="idref" href="ConCert.Examples.FA2.FA2Token.html#other_msg"><span class="id" title="constructor">FA2Token.other_msg</span></a> <span class="id" title="var">_</span> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2CPMM.html#DexterMsg"><span class="id" title="inductive">DexterMsg</span></a> (<a class="idref" href="ConCert.Examples.Dexter2.Dexter2CPMM.html#SetLqtAddress"><span class="id" title="constructor">SetLqtAddress</span></a> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#lqt_contract_base_addr"><span class="id" title="definition">lqt_contract_base_addr</span></a>)).<br/>
+</div>
+
+<div class="doc">
+Sync token pool counter 
+</div>
+<div class="code">
+<span class="id" title="keyword">Definition</span> <a id="update_token_pool" class="idref" href="#update_token_pool"><span class="id" title="definition">update_token_pool</span></a> := <a class="idref" href="ConCert.Execution.Test.TestUtils.html#build_call"><span class="id" title="definition">build_call</span></a> <a class="idref" href="ConCert.Execution.Test.TestUtils.html#creator"><span class="id" title="definition">creator</span></a> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#cpmm_contract_base_addr"><span class="id" title="definition">cpmm_contract_base_addr</span></a> 0<br/>
+&nbsp;&nbsp;(@<a class="idref" href="ConCert.Examples.FA2.FA2Token.html#other_msg"><span class="id" title="constructor">FA2Token.other_msg</span></a> <span class="id" title="var">_</span> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2CPMM.html#DexterMsg"><span class="id" title="inductive">DexterMsg</span></a> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2CPMM.html#UpdateTokenPool"><span class="id" title="constructor">UpdateTokenPool</span></a>).<br/>
+<span class="id" title="keyword">Definition</span> <a id="setup_cpmm_contract" class="idref" href="#setup_cpmm_contract"><span class="id" title="definition">setup_cpmm_contract</span></a> := <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">[</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#deploy_cpmm"><span class="id" title="definition">deploy_cpmm</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#transfer_cpmm_xtz"><span class="id" title="definition">transfer_cpmm_xtz</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#set_lqt_address"><span class="id" title="definition">set_lqt_address</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#update_token_pool"><span class="id" title="definition">update_token_pool</span></a><br/>
+<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">]</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">Definition</span> <a id="init_cb" class="idref" href="#init_cb"><span class="id" title="definition">init_cb</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Execution.Test.TraceGens.html#add_block"><span class="id" title="definition">add_block</span></a> <a class="idref" href="ConCert.Execution.Test.TestUtils.html#empty_chain"><span class="id" title="definition">empty_chain</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#transfer_initial_funds"><span class="id" title="definition">transfer_initial_funds</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#bc347c51eaf667706ae54503b26d52c6"><span class="id" title="notation">++</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#setup_token_contract"><span class="id" title="definition">setup_token_contract</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#bc347c51eaf667706ae54503b26d52c6"><span class="id" title="notation">++</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#deploy_lqt"><span class="id" title="definition">deploy_lqt</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#bc347c51eaf667706ae54503b26d52c6"><span class="id" title="notation">++</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#setup_cpmm_contract"><span class="id" title="definition">setup_cpmm_contract</span></a>).<br/>
+<span class="id" title="keyword">Definition</span> <a id="init_cb'" class="idref" href="#init_cb'"><span class="id" title="definition">init_cb'</span></a> :=<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#init_cb"><span class="id" title="definition">init_cb</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;| <a class="idref" href="ConCert.Execution.ResultMonad.html#Ok"><span class="id" title="constructor">Ok</span></a> <span class="id" title="var">cb</span> =&gt; <span class="id" title="var">cb</span><br/>
+&nbsp;&nbsp;| <a class="idref" href="ConCert.Execution.ResultMonad.html#Err"><span class="id" title="constructor">Err</span></a> <span class="id" title="var">_</span> =&gt; <a class="idref" href="ConCert.Execution.Test.TestUtils.html#empty_chain"><span class="id" title="definition">empty_chain</span></a><br/>
+&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Module</span> <a id="NotationInfo" class="idref" href="#NotationInfo"><span class="id" title="module">NotationInfo</span></a> &lt;: <a class="idref" href="ConCert.Execution.Test.TestNotation.html#TestNotationParameters"><span class="id" title="module">TestNotationParameters</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a id="NotationInfo.gAction" class="idref" href="#NotationInfo.gAction"><span class="id" title="definition">gAction</span></a> := <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#MG.gAction"><span class="id" title="definition">gAction</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a id="NotationInfo.init_cb" class="idref" href="#NotationInfo.init_cb"><span class="id" title="definition">init_cb</span></a> := <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#init_cb'"><span class="id" title="definition">init_cb'</span></a>.<br/>
+<span class="id" title="keyword">End</span> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#NotationInfo"><span class="id" title="module">NotationInfo</span></a>.<br/>
+<span class="id" title="keyword">Module</span> <a id="TN" class="idref" href="#TN"><span class="id" title="module">TN</span></a> := <a class="idref" href="ConCert.Execution.Test.TestNotation.html#TestNotations"><span class="id" title="module">TestNotations</span></a> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#NotationInfo"><span class="id" title="module">NotationInfo</span></a>. <span class="id" title="keyword">Import</span> <span class="id" title="var">TN</span>.<br/>
+<span class="comment">(*&nbsp;Sample&nbsp;(gChain).&nbsp;*)</span><br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a id="lab345"></a><h1 class="section">Tests</h1>
+ Dexter2 uses call to balance_of entrypoint on the token contract
+    to sync the token reserves. It is key that there is no way for an
+    attacker to manipulate the reserve by interfering with this sync.
+    Therefore we test in both execution orders that there will never be
+    callbacks with someone elses balance / incorrect balance.
+
+</div>
+<div class="code">
+<span class="id" title="keyword">Definition</span> <a id="msg_is_balance_of_callback" class="idref" href="#msg_is_balance_of_callback"><span class="id" title="definition">msg_is_balance_of_callback</span></a> (<a id="cstate:5" class="idref" href="#cstate:5"><span class="id" title="binder">cstate</span></a> : <a class="idref" href="ConCert.Examples.Dexter2.Dexter2CPMM.html#State"><span class="id" title="record">Dexter2CPMM.State</span></a>) (<a id="msg:6" class="idref" href="#msg:6"><span class="id" title="binder">msg</span></a> : <a class="idref" href="ConCert.Examples.Dexter2.Dexter2CPMM.html#Msg"><span class="id" title="definition">Dexter2CPMM.Msg</span></a>) : <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#bool"><span class="id" title="inductive">bool</span></a> :=<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#msg:6"><span class="id" title="variable">msg</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;| <a class="idref" href="ConCert.Examples.FA2.FA2Token.html#receive_balance_of_param"><span class="id" title="constructor">FA2Token.receive_balance_of_param</span></a> <span class="id" title="var">_</span> =&gt; <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#true"><span class="id" title="constructor">true</span></a><br/>
+&nbsp;&nbsp;| <span class="id" title="var">_</span> =&gt; <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#false"><span class="id" title="constructor">false</span></a><br/>
+&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Definition</span> <a id="callback_safe" class="idref" href="#callback_safe"><span class="id" title="definition">callback_safe</span></a> (<a id="env:8" class="idref" href="#env:8"><span class="id" title="binder">env</span></a> : <a class="idref" href="ConCert.Execution.Blockchain.html#Environment"><span class="id" title="record">Environment</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a id="cctx:9" class="idref" href="#cctx:9"><span class="id" title="binder">cctx</span></a> : <a class="idref" href="ConCert.Execution.Blockchain.html#ContractCallContext"><span class="id" title="record">ContractCallContext</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a id="old_state:10" class="idref" href="#old_state:10"><span class="id" title="binder">old_state</span></a> : <a class="idref" href="ConCert.Examples.Dexter2.Dexter2CPMM.html#State"><span class="id" title="record">Dexter2CPMM.State</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a id="msg:11" class="idref" href="#msg:11"><span class="id" title="binder">msg</span></a> : <a class="idref" href="ConCert.Examples.Dexter2.Dexter2CPMM.html#Msg"><span class="id" title="definition">Dexter2CPMM.Msg</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a id="result_opt:12" class="idref" href="#result_opt:12"><span class="id" title="binder">result_opt</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#option"><span class="id" title="inductive">option</span></a> (<a class="idref" href="ConCert.Examples.Dexter2.Dexter2CPMM.html#State"><span class="id" title="record">Dexter2CPMM.State</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#11c698c8685bb8ab1cf725545c085ac4"><span class="id" title="notation">*</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="ConCert.Execution.Blockchain.html#ActionBody"><span class="id" title="inductive">ActionBody</span></a>)) :=<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">(</span></a><a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#result_opt:12"><span class="id" title="variable">result_opt</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">,</span></a> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#msg:11"><span class="id" title="variable">msg</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">)</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;| <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">(</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#Some"><span class="id" title="constructor">Some</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">(</span></a><span class="id" title="var">new_state</span><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">,</span></a> <span class="id" title="var">_</span><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">),</span></a> <a class="idref" href="ConCert.Examples.FA2.FA2Token.html#receive_balance_of_param"><span class="id" title="constructor">FA2Token.receive_balance_of_param</span></a> <span class="id" title="var">responses</span><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">)</span></a> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">let</span> <a id="length_correct:13" class="idref" href="#length_correct:13"><span class="id" title="binder">length_correct</span></a> := <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#length"><span class="id" title="abbreviation">length</span></a> <span class="id" title="var">responses</span> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Arith.PeanoNat.html#ad2ec4e405f68c46c0a176e3e94ae2e3"><span class="id" title="notation">=?</span></a> 1 <span class="id" title="tactic">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">let</span> <a id="owner_correct:15" class="idref" href="#owner_correct:15"><span class="id" title="binder">owner_correct</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">responses</span> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" title="var">h</span> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#::list_scope:x_'::'_x"><span class="id" title="notation">::</span></a> <span class="id" title="var">t</span> =&gt; <a class="idref" href="ConCert.Execution.Blockchain.html#address_eqb"><span class="id" title="method">address_eqb</span></a> (<span class="id" title="var">h</span>.(<a class="idref" href="ConCert.Examples.FA2.FA2LegacyInterface.html#request"><span class="id" title="projection">request</span></a>).(<a class="idref" href="ConCert.Examples.FA2.FA2LegacyInterface.html#owner"><span class="id" title="projection">owner</span></a>)) <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#cpmm_contract_base_addr"><span class="id" title="definition">cpmm_contract_base_addr</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" title="var">_</span> =&gt; <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#true"><span class="id" title="constructor">true</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span> <span class="id" title="tactic">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">let</span> <a id="amount_correct:17" class="idref" href="#amount_correct:17"><span class="id" title="binder">amount_correct</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">responses</span> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" title="var">h</span> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#::list_scope:x_'::'_x"><span class="id" title="notation">::</span></a> <span class="id" title="var">t</span> =&gt; (<a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#old_state:10"><span class="id" title="variable">old_state</span></a>.(<a class="idref" href="ConCert.Examples.Dexter2.Dexter2CPMM.html#tokenPool"><span class="id" title="projection">tokenPool</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.NArith.BinNat.html#05335162eaa480b4616c18e1c329eb57"><span class="id" title="notation">&lt;=?</span></a> <span class="id" title="var">h</span>.(<a class="idref" href="ConCert.Examples.FA2.FA2LegacyInterface.html#balance"><span class="id" title="projection">balance</span></a>))%<span class="id" title="var">N</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" title="var">_</span> =&gt; <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#true"><span class="id" title="constructor">true</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span> <span class="id" title="tactic">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">let</span> <a id="is_updating:18" class="idref" href="#is_updating:18"><span class="id" title="binder">is_updating</span></a> := <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#old_state:10"><span class="id" title="variable">old_state</span></a>.(<a class="idref" href="ConCert.Examples.Dexter2.Dexter2CPMM.html#selfIsUpdatingTokenPool"><span class="id" title="projection">selfIsUpdatingTokenPool</span></a>) <span class="id" title="tactic">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="method">checker</span> (<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#length_correct:13"><span class="id" title="variable">length_correct</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#::bool_scope:x_'&amp;&amp;'_x"><span class="id" title="notation">&amp;&amp;</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#owner_correct:15"><span class="id" title="variable">owner_correct</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#::bool_scope:x_'&amp;&amp;'_x"><span class="id" title="notation">&amp;&amp;</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#amount_correct:17"><span class="id" title="variable">amount_correct</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#::bool_scope:x_'&amp;&amp;'_x"><span class="id" title="notation">&amp;&amp;</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#is_updating:18"><span class="id" title="variable">is_updating</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;))<br/>
+&nbsp;&nbsp;| <span class="id" title="var">_</span> =&gt; <span class="id" title="method">checker</span> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#false"><span class="id" title="constructor">false</span></a><br/>
+&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+<span class="comment">(*&nbsp;Extract&nbsp;Constant&nbsp;DepthFirst&nbsp;=&gt;&nbsp;"false".<br/>
+QuickChick&nbsp;({{msg_is_balance_of_callback}}&nbsp;cpmm_contract_base_addr&nbsp;{{callback_safe}}).&nbsp;*)</span><br/>
+<span class="comment">(*&nbsp;+++&nbsp;Passed&nbsp;10000&nbsp;tests&nbsp;(0&nbsp;discards)&nbsp;*)</span><br/>
+
+<br/>
+<span class="comment">(*&nbsp;Extract&nbsp;Constant&nbsp;DepthFirst&nbsp;=&gt;&nbsp;"true".<br/>
+QuickChick&nbsp;({{msg_is_balance_of_callback}}&nbsp;cpmm_contract_base_addr&nbsp;{{callback_safe}}).&nbsp;*)</span><br/>
+<span class="comment">(*&nbsp;+++&nbsp;Passed&nbsp;10000&nbsp;tests&nbsp;(0&nbsp;discards)&nbsp;*)</span><br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Next we test that no Dexter operations can happen
+    while token reserve is syncing.
+    Again we test for both execution models.
+
+</div>
+<div class="code">
+<span class="id" title="keyword">Definition</span> <a id="is_syncing" class="idref" href="#is_syncing"><span class="id" title="definition">is_syncing</span></a> (<a id="state:19" class="idref" href="#state:19"><span class="id" title="binder">state</span></a> : <a class="idref" href="ConCert.Examples.Dexter2.Dexter2CPMM.html#State"><span class="id" title="record">Dexter2CPMM.State</span></a>) (<a id="msg:20" class="idref" href="#msg:20"><span class="id" title="binder">msg</span></a> : <a class="idref" href="ConCert.Examples.Dexter2.Dexter2CPMM.html#Msg"><span class="id" title="definition">Dexter2CPMM.Msg</span></a>) : <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#bool"><span class="id" title="inductive">bool</span></a> :=<br/>
+&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#state:19"><span class="id" title="variable">state</span></a>.(<a class="idref" href="ConCert.Examples.Dexter2.Dexter2CPMM.html#selfIsUpdatingTokenPool"><span class="id" title="projection">selfIsUpdatingTokenPool</span></a>).<br/>
+
+<br/>
+<span class="id" title="keyword">Definition</span> <a id="only_callbacks" class="idref" href="#only_callbacks"><span class="id" title="definition">only_callbacks</span></a> (<a id="env:21" class="idref" href="#env:21"><span class="id" title="binder">env</span></a> : <a class="idref" href="ConCert.Execution.Blockchain.html#Environment"><span class="id" title="record">Environment</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a id="cctx:22" class="idref" href="#cctx:22"><span class="id" title="binder">cctx</span></a> : <a class="idref" href="ConCert.Execution.Blockchain.html#ContractCallContext"><span class="id" title="record">ContractCallContext</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a id="old_state:23" class="idref" href="#old_state:23"><span class="id" title="binder">old_state</span></a> : <a class="idref" href="ConCert.Examples.Dexter2.Dexter2CPMM.html#State"><span class="id" title="record">Dexter2CPMM.State</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a id="msg:24" class="idref" href="#msg:24"><span class="id" title="binder">msg</span></a> : <a class="idref" href="ConCert.Examples.Dexter2.Dexter2CPMM.html#Msg"><span class="id" title="definition">Dexter2CPMM.Msg</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a id="result_opt:25" class="idref" href="#result_opt:25"><span class="id" title="binder">result_opt</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#option"><span class="id" title="inductive">option</span></a> (<a class="idref" href="ConCert.Examples.Dexter2.Dexter2CPMM.html#State"><span class="id" title="record">Dexter2CPMM.State</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#11c698c8685bb8ab1cf725545c085ac4"><span class="id" title="notation">*</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="ConCert.Execution.Blockchain.html#ActionBody"><span class="id" title="inductive">ActionBody</span></a>)) :=<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">(</span></a><a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#result_opt:25"><span class="id" title="variable">result_opt</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">,</span></a> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#msg:24"><span class="id" title="variable">msg</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">)</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;| <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">(</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#Some"><span class="id" title="constructor">Some</span></a> <span class="id" title="var">_</span><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">,</span></a> <a class="idref" href="ConCert.Examples.FA2.FA2Token.html#receive_balance_of_param"><span class="id" title="constructor">FA2Token.receive_balance_of_param</span></a> <span class="id" title="var">_</span><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">)</span></a> =&gt; <span class="id" title="method">checker</span> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#true"><span class="id" title="constructor">true</span></a><br/>
+&nbsp;&nbsp;| <span class="id" title="var">_</span> =&gt; <span class="id" title="method">checker</span> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#false"><span class="id" title="constructor">false</span></a><br/>
+&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+<span class="comment">(*&nbsp;Extract&nbsp;Constant&nbsp;DepthFirst&nbsp;=&gt;&nbsp;"false".<br/>
+QuickChick&nbsp;({{is_syncing}}&nbsp;cpmm_contract_base_addr&nbsp;{{only_callbacks}}).&nbsp;*)</span><br/>
+<span class="comment">(*&nbsp;+++&nbsp;Passed&nbsp;10000&nbsp;tests&nbsp;(0&nbsp;discards)&nbsp;*)</span><br/>
+
+<br/>
+<span class="comment">(*&nbsp;Extract&nbsp;Constant&nbsp;DepthFirst&nbsp;=&gt;&nbsp;"true".<br/>
+QuickChick&nbsp;({{is_syncing}}&nbsp;cpmm_contract_base_addr&nbsp;{{only_callbacks}}).&nbsp;*)</span><br/>
+<span class="comment">(*&nbsp;+++&nbsp;Passed&nbsp;10000&nbsp;tests&nbsp;(0&nbsp;discards)&nbsp;*)</span><br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Finally we test that the token reserve invariant holds.
+    That is the actual token balance should always be less
+    than the token reserve.
+
+</div>
+<div class="code">
+<span class="id" title="keyword">Definition</span> <a id="token_reserve_safe" class="idref" href="#token_reserve_safe"><span class="id" title="definition">token_reserve_safe</span></a> (<a id="cs:26" class="idref" href="#cs:26"><span class="id" title="binder">cs</span></a> : <a class="idref" href="ConCert.Execution.Blockchain.html#ChainState"><span class="id" title="record">ChainState</span></a>) :=<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="ConCert.Execution.Test.TestUtils.html#get_contract_state"><span class="id" title="definition">get_contract_state</span></a> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2CPMM.html#State"><span class="id" title="record">Dexter2CPMM.State</span></a> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#cs:26"><span class="id" title="variable">cs</span></a> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#cpmm_contract_base_addr"><span class="id" title="definition">cpmm_contract_base_addr</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;| <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#Some"><span class="id" title="constructor">Some</span></a> <span class="id" title="var">dexter_state</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="ConCert.Execution.Test.TestUtils.html#get_contract_state"><span class="id" title="definition">get_contract_state</span></a> <a class="idref" href="ConCert.Examples.FA2.FA2Token.html#State"><span class="id" title="record">FA2Token.State</span></a> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#cs:26"><span class="id" title="variable">cs</span></a> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#token_contract_base_addr"><span class="id" title="definition">token_contract_base_addr</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#Some"><span class="id" title="constructor">Some</span></a> <span class="id" title="var">token_state</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">let</span> <a id="token_reserve:27" class="idref" href="#token_reserve:27"><span class="id" title="binder">token_reserve</span></a> := <span class="id" title="var">dexter_state</span>.(<a class="idref" href="ConCert.Examples.Dexter2.Dexter2CPMM.html#tokenPool"><span class="id" title="projection">tokenPool</span></a>) <span class="id" title="tactic">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">let</span> <a id="token_balance:28" class="idref" href="#token_balance:28"><span class="id" title="binder">token_balance</span></a> := <a class="idref" href="ConCert.Examples.FA2.FA2Token.html#address_balance"><span class="id" title="definition">address_balance</span></a> <span class="id" title="var">dexter_state</span>.(<a class="idref" href="ConCert.Examples.Dexter2.Dexter2CPMM.html#tokenId"><span class="id" title="projection">tokenId</span></a>) <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#cpmm_contract_base_addr"><span class="id" title="definition">cpmm_contract_base_addr</span></a> <span class="id" title="var">token_state</span> <span class="id" title="tactic">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="method">checker</span> (<a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#token_reserve:27"><span class="id" title="variable">token_reserve</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.NArith.BinNat.html#05335162eaa480b4616c18e1c329eb57"><span class="id" title="notation">&lt;=?</span></a> <a class="idref" href="ConCert.Examples.Dexter2.Dexter2Tests.html#token_balance:28"><span class="id" title="variable">token_balance</span></a>)%<span class="id" title="var">N</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#None"><span class="id" title="constructor">None</span></a> =&gt; <span class="id" title="method">checker</span> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#true"><span class="id" title="constructor">true</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span><br/>
+&nbsp;&nbsp;| <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#None"><span class="id" title="constructor">None</span></a> =&gt; <span class="id" title="method">checker</span> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#true"><span class="id" title="constructor">true</span></a><br/>
+&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+<span class="comment">(*&nbsp;Extract&nbsp;Constant&nbsp;DepthFirst&nbsp;=&gt;&nbsp;"false".<br/>
+QuickChick&nbsp;(forAllBlocks&nbsp;token_reserve_safe).&nbsp;*)</span><br/>
+<span class="comment">(*&nbsp;+++&nbsp;Passed&nbsp;10000&nbsp;tests&nbsp;(0&nbsp;discards)&nbsp;*)</span><br/>
+
+<br/>
+<span class="comment">(*&nbsp;Extract&nbsp;Constant&nbsp;DepthFirst&nbsp;=&gt;&nbsp;"true".<br/>
+QuickChick&nbsp;(forAllBlocks&nbsp;token_reserve_safe).&nbsp;*)</span><br/>
+<span class="comment">(*&nbsp;+++&nbsp;Passed&nbsp;10000&nbsp;tests&nbsp;(0&nbsp;discards)&nbsp;*)</span><br/>
+</div>
+</div>
+<div id="footer">
+  Generated by <a href="https://coq.inria.fr/">coqdoc</a> and improved with <a href="https://github.com/tebbi/coqdocjs">CoqdocJS</a> and <a href="https://github.com/jgallen23/toc">TOC</a>
+</div>
+</div>
+<script>
+  const elements = document.getElementsByClassName("libtitle");
+  while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+  }
+  if (window.location.pathname.endsWith("/toc.html")) {
+      const jstocDiv = document.getElementById("js-toc");
+      jstocDiv.classList.remove("toc");
+      jstocDiv.classList.add("jstoc-hidden");
+      const jstocHeaderDiv = document.getElementById("js-toc-header");
+      jstocHeaderDiv.classList.add("jstoc-hidden");
+      const mainDiv = document.getElementById("main");
+      mainDiv.classList.add("jstoc-hidden-main");
+      const toggleDiv = document.getElementById("toggle-toc");
+      toggleDiv.classList.add("jstoc-hidden");
+  }
+  console.log(window.location.pathname);
+</script>
+<script type="text/javascript" src="toc.js"></script>
+</body>
+
+</html>

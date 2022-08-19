@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<link href="coqdoc.css" rel="stylesheet" type="text/css" />
+<link href="coqdocjs.css" rel="stylesheet" type="text/css"/>
+<link href="toc.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="config.js"></script>
+<script type="text/javascript" src="coqdocjs.js"></script>
+</head>
+
+<body onload="document.getElementById('content').focus()">
+  <div id="header">
+    <span class="left">
+      <span class="modulename"> <script> document.write(document.title) </script> </span>
+      <span id="toggle-toc">Contents</span>
+    </span>
+
+    <span class="button" id="toggle-proofs"></span>
+
+    <span class="right">
+      <a href="https://github.com/AU-COBRA/ConCert" target="_balnk">Project Page</a>
+      <a href="index.html">Index</a>
+      <a href="toc.html">Table of contents</a>
+    </span>
+</div>
+  <div id="content" tabindex="-1" onblur="document.getElementById('content').focus()">
+    <div id="js-toc" class="toc" data-toc="h1,h2,h3,h4" data-toc-container="doc" data-toc-offset="-40">
+      <div id="js-toc-header" class="toc-header">Contents:</div>
+    </div>
+    <div id="main">
+<h1 class="libtitle">Library ConCert.Examples.Escrow.tests.EscrowPrinters</h1>
+
+<div class="code">
+<span class="comment">(*&nbsp;Show&nbsp;instances&nbsp;for&nbsp;the&nbsp;Escrow&nbsp;types.&nbsp;Necessary&nbsp;for&nbsp;QuickChick&nbsp;testing.&nbsp;*)</span><br/>
+
+<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Execution</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Execution.Blockchain.html#"><span class="id" title="library">Blockchain</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Execution</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Execution.Serializable.html#"><span class="id" title="library">Serializable</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Execution.Test</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Execution.Test.QCTest.html#"><span class="id" title="library">QCTest</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Examples.Escrow</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Examples.Escrow.Escrow.html#"><span class="id" title="library">Escrow</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">Local Open</span> <span class="id" title="keyword">Scope</span> <span class="id" title="var">string_scope</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Derive</span> <span class="id" title="keyword">Show</span> <span class="id" title="keyword">for</span> <span class="id" title="var">NextStep</span>.<br/>
+<span class="id" title="keyword">Derive</span> <span class="id" title="keyword">Show</span> <span class="id" title="keyword">for</span> <span class="id" title="var">Msg</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Instance</span> <a id="showEscrowSetup" class="idref" href="#showEscrowSetup"><span class="id" title="instance">showEscrowSetup</span></a> : <span class="id" title="class">Show</span> <a class="idref" href="ConCert.Examples.Escrow.Escrow.html#Setup"><span class="id" title="record">Setup</span></a> :=<br/>
+{|<br/>
+&nbsp;&nbsp;<span class="id" title="method">show</span> <a id="setup:11" class="idref" href="#setup:11"><span class="id" title="binder">setup</span></a> := "Setup{buyer: " <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> <span class="id" title="method">show</span> <a class="idref" href="ConCert.Examples.Escrow.tests.EscrowPrinters.html#setup:11"><span class="id" title="variable">setup</span></a>.(<a class="idref" href="ConCert.Examples.Escrow.Escrow.html#setup_buyer"><span class="id" title="projection">setup_buyer</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> "}"<br/>
+|}.<br/>
+
+<br/>
+<span class="id" title="keyword">Instance</span> <a id="showEscrowState" class="idref" href="#showEscrowState"><span class="id" title="instance">showEscrowState</span></a> : <span class="id" title="class">Show</span> <a class="idref" href="ConCert.Examples.Escrow.Escrow.html#State"><span class="id" title="record">Escrow.State</span></a> :=<br/>
+{|<br/>
+&nbsp;&nbsp;<span class="id" title="method">show</span> <a id="s:12" class="idref" href="#s:12"><span class="id" title="binder">s</span></a> := "EscrowState{" <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"last_action: " <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> <span class="id" title="method">show</span> <a class="idref" href="ConCert.Examples.Escrow.tests.EscrowPrinters.html#s:12"><span class="id" title="variable">s</span></a>.(<a class="idref" href="ConCert.Examples.Escrow.Escrow.html#last_action"><span class="id" title="projection">last_action</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> <a class="idref" href="ConCert.Execution.Test.ChainPrinters.html#sep"><span class="id" title="definition">sep</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"next_step: " <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> <span class="id" title="method">show</span> <a class="idref" href="ConCert.Examples.Escrow.tests.EscrowPrinters.html#s:12"><span class="id" title="variable">s</span></a>.(<a class="idref" href="ConCert.Examples.Escrow.Escrow.html#next_step"><span class="id" title="projection">next_step</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> <a class="idref" href="ConCert.Execution.Test.ChainPrinters.html#sep"><span class="id" title="definition">sep</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"seller: " <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> <span class="id" title="method">show</span> <a class="idref" href="ConCert.Examples.Escrow.tests.EscrowPrinters.html#s:12"><span class="id" title="variable">s</span></a>.(<a class="idref" href="ConCert.Examples.Escrow.Escrow.html#seller"><span class="id" title="projection">seller</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> <a class="idref" href="ConCert.Execution.Test.ChainPrinters.html#sep"><span class="id" title="definition">sep</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"buyer: " <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> <span class="id" title="method">show</span> <a class="idref" href="ConCert.Examples.Escrow.tests.EscrowPrinters.html#s:12"><span class="id" title="variable">s</span></a>.(<a class="idref" href="ConCert.Examples.Escrow.Escrow.html#buyer"><span class="id" title="projection">buyer</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> <a class="idref" href="ConCert.Execution.Test.ChainPrinters.html#sep"><span class="id" title="definition">sep</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"seller_withdrawable: " <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> <span class="id" title="method">show</span> <a class="idref" href="ConCert.Examples.Escrow.tests.EscrowPrinters.html#s:12"><span class="id" title="variable">s</span></a>.(<a class="idref" href="ConCert.Examples.Escrow.Escrow.html#seller_withdrawable"><span class="id" title="projection">seller_withdrawable</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> <a class="idref" href="ConCert.Execution.Test.ChainPrinters.html#sep"><span class="id" title="definition">sep</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"buyer_withdrawable: " <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> <span class="id" title="method">show</span> <a class="idref" href="ConCert.Examples.Escrow.tests.EscrowPrinters.html#s:12"><span class="id" title="variable">s</span></a>.(<a class="idref" href="ConCert.Examples.Escrow.Escrow.html#buyer_withdrawable"><span class="id" title="projection">buyer_withdrawable</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> "}"<br/>
+|}.<br/>
+
+<br/>
+<span class="id" title="keyword">Instance</span> <a id="showSerializedMsg" class="idref" href="#showSerializedMsg"><span class="id" title="instance">showSerializedMsg</span></a> : <span class="id" title="class">Show</span> <a class="idref" href="ConCert.Execution.Serializable.html#SerializedValue"><span class="id" title="record">SerializedValue</span></a> :=<br/>
+&nbsp;&nbsp;<a class="idref" href="ConCert.Execution.Test.ChainPrinters.html#0be3799fd5e2e7e5f0376d63e32f7a20"><span class="id" title="notation">Derive</span></a> <a class="idref" href="ConCert.Execution.Test.ChainPrinters.html#0be3799fd5e2e7e5f0376d63e32f7a20"><span class="id" title="notation">Show</span></a> <a class="idref" href="ConCert.Execution.Test.ChainPrinters.html#0be3799fd5e2e7e5f0376d63e32f7a20"><span class="id" title="notation">Msg</span></a> <a class="idref" href="ConCert.Execution.Test.ChainPrinters.html#0be3799fd5e2e7e5f0376d63e32f7a20"><span class="id" title="notation">&lt;</span></a> <a class="idref" href="ConCert.Examples.Escrow.Escrow.html#Msg"><span class="id" title="inductive">Msg</span></a><a class="idref" href="ConCert.Execution.Test.ChainPrinters.html#0be3799fd5e2e7e5f0376d63e32f7a20"><span class="id" title="notation">,</span></a> <a class="idref" href="ConCert.Examples.Escrow.Escrow.html#Setup"><span class="id" title="record">Setup</span></a> <a class="idref" href="ConCert.Execution.Test.ChainPrinters.html#0be3799fd5e2e7e5f0376d63e32f7a20"><span class="id" title="notation">&gt;</span></a>.<br/>
+</div>
+</div>
+<div id="footer">
+  Generated by <a href="https://coq.inria.fr/">coqdoc</a> and improved with <a href="https://github.com/tebbi/coqdocjs">CoqdocJS</a> and <a href="https://github.com/jgallen23/toc">TOC</a>
+</div>
+</div>
+<script>
+  const elements = document.getElementsByClassName("libtitle");
+  while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+  }
+  if (window.location.pathname.endsWith("/toc.html")) {
+      const jstocDiv = document.getElementById("js-toc");
+      jstocDiv.classList.remove("toc");
+      jstocDiv.classList.add("jstoc-hidden");
+      const jstocHeaderDiv = document.getElementById("js-toc-header");
+      jstocHeaderDiv.classList.add("jstoc-hidden");
+      const mainDiv = document.getElementById("main");
+      mainDiv.classList.add("jstoc-hidden-main");
+      const toggleDiv = document.getElementById("toggle-toc");
+      toggleDiv.classList.add("jstoc-hidden");
+  }
+  console.log(window.location.pathname);
+</script>
+<script type="text/javascript" src="toc.js"></script>
+</body>
+
+</html>

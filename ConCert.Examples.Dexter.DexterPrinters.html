@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<link href="coqdoc.css" rel="stylesheet" type="text/css" />
+<link href="coqdocjs.css" rel="stylesheet" type="text/css"/>
+<link href="toc.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="config.js"></script>
+<script type="text/javascript" src="coqdocjs.js"></script>
+</head>
+
+<body onload="document.getElementById('content').focus()">
+  <div id="header">
+    <span class="left">
+      <span class="modulename"> <script> document.write(document.title) </script> </span>
+      <span id="toggle-toc">Contents</span>
+    </span>
+
+    <span class="button" id="toggle-proofs"></span>
+
+    <span class="right">
+      <a href="https://github.com/AU-COBRA/ConCert" target="_balnk">Project Page</a>
+      <a href="index.html">Index</a>
+      <a href="toc.html">Table of contents</a>
+    </span>
+</div>
+  <div id="content" tabindex="-1" onblur="document.getElementById('content').focus()">
+    <div id="js-toc" class="toc" data-toc="h1,h2,h3,h4" data-toc-container="doc" data-toc-offset="-40">
+      <div id="js-toc-header" class="toc-header">Contents:</div>
+    </div>
+    <div id="main">
+<h1 class="libtitle">Library ConCert.Examples.Dexter.DexterPrinters</h1>
+
+<div class="code">
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Execution</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Execution.Blockchain.html#"><span class="id" title="library">Blockchain</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Execution</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Execution.Serializable.html#"><span class="id" title="library">Serializable</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Execution.Test</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Execution.Test.QCTest.html#"><span class="id" title="library">QCTest</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Examples.Dexter</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Examples.Dexter.Dexter.html#"><span class="id" title="library">Dexter</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Examples.EIP20</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Examples.EIP20.EIP20Token.html#"><span class="id" title="library">EIP20Token</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Examples.EIP20</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Examples.EIP20.EIP20TokenPrinters.html#"><span class="id" title="library">EIP20TokenPrinters</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">Local Open</span> <span class="id" title="keyword">Scope</span> <span class="id" title="var">string_scope</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Instance</span> <a id="showDexterExchangeParam" class="idref" href="#showDexterExchangeParam"><span class="id" title="instance">showDexterExchangeParam</span></a> : <span class="id" title="class">Show</span> <a class="idref" href="ConCert.Examples.Dexter.Dexter.html#exchange_param"><span class="id" title="record">Dexter.exchange_param</span></a> :=<br/>
+{|<br/>
+&nbsp;&nbsp;<span class="id" title="method">show</span> <a id="t:1" class="idref" href="#t:1"><span class="id" title="binder">t</span></a> := "exchange{"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> "exchange_owner: " <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> <span class="id" title="method">show</span> <a class="idref" href="ConCert.Examples.Dexter.DexterPrinters.html#t:1"><span class="id" title="variable">t</span></a>.(<a class="idref" href="ConCert.Examples.Dexter.Dexter.html#exchange_owner"><span class="id" title="projection">exchange_owner</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> <a class="idref" href="ConCert.Execution.Test.ChainPrinters.html#sep"><span class="id" title="definition">sep</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> "tokens_sold: " <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> <span class="id" title="method">show</span> <a class="idref" href="ConCert.Examples.Dexter.DexterPrinters.html#t:1"><span class="id" title="variable">t</span></a>.(<a class="idref" href="ConCert.Examples.Dexter.Dexter.html#tokens_sold"><span class="id" title="projection">tokens_sold</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> "}"<br/>
+|}.<br/>
+
+<br/>
+<span class="id" title="keyword">Instance</span> <a id="showDexterMsg" class="idref" href="#showDexterMsg"><span class="id" title="instance">showDexterMsg</span></a> : <span class="id" title="class">Show</span> <a class="idref" href="ConCert.Examples.Dexter.Dexter.html#Msg"><span class="id" title="inductive">Dexter.Msg</span></a> :=<br/>
+{|<br/>
+&nbsp;&nbsp;<span class="id" title="method">show</span> <a id="m:2" class="idref" href="#m:2"><span class="id" title="binder">m</span></a> := <span class="id" title="keyword">match</span> <a class="idref" href="ConCert.Examples.Dexter.DexterPrinters.html#m:2"><span class="id" title="variable">m</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="ConCert.Examples.Dexter.Dexter.html#tokens_to_asset"><span class="id" title="constructor">tokens_to_asset</span></a> <span class="id" title="var">param</span> =&gt; "token_to_asset " <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> <span class="id" title="method">show</span> <span class="id" title="var">param</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="ConCert.Examples.Dexter.Dexter.html#add_to_tokens_reserve"><span class="id" title="constructor">add_to_tokens_reserve</span></a> =&gt; "add_to_tokens_reserve"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span><br/>
+|}.<br/>
+
+<br/>
+<span class="id" title="keyword">Instance</span> <a id="showDexterState" class="idref" href="#showDexterState"><span class="id" title="instance">showDexterState</span></a> : <span class="id" title="class">Show</span> <a class="idref" href="ConCert.Examples.Dexter.Dexter.html#State"><span class="id" title="record">Dexter.State</span></a> :=<br/>
+{|<br/>
+&nbsp;&nbsp;<span class="id" title="method">show</span> <a id="t:4" class="idref" href="#t:4"><span class="id" title="binder">t</span></a> := "DexterState{"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> "token_caddr: " <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> <span class="id" title="method">show</span> <a class="idref" href="ConCert.Examples.Dexter.DexterPrinters.html#t:4"><span class="id" title="variable">t</span></a>.(<a class="idref" href="ConCert.Examples.Dexter.Dexter.html#token_caddr"><span class="id" title="projection">token_caddr</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> <a class="idref" href="ConCert.Execution.Test.ChainPrinters.html#sep"><span class="id" title="definition">sep</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> "token_pool: " <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> <span class="id" title="method">show</span> <a class="idref" href="ConCert.Examples.Dexter.DexterPrinters.html#t:4"><span class="id" title="variable">t</span></a>.(<a class="idref" href="ConCert.Examples.Dexter.Dexter.html#token_pool"><span class="id" title="projection">token_pool</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> <a class="idref" href="ConCert.Execution.Test.ChainPrinters.html#sep"><span class="id" title="definition">sep</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> "price_history: " <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> <span class="id" title="method">show</span> <a class="idref" href="ConCert.Examples.Dexter.DexterPrinters.html#t:4"><span class="id" title="variable">t</span></a>.(<a class="idref" href="ConCert.Examples.Dexter.Dexter.html#price_history"><span class="id" title="projection">price_history</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> "}"<br/>
+|}.<br/>
+
+<br/>
+<span class="id" title="keyword">Instance</span> <a id="showDexterSetup" class="idref" href="#showDexterSetup"><span class="id" title="instance">showDexterSetup</span></a> : <span class="id" title="class">Show</span> <a class="idref" href="ConCert.Examples.Dexter.Dexter.html#Setup"><span class="id" title="record">Dexter.Setup</span></a> :=<br/>
+{|<br/>
+&nbsp;&nbsp;<span class="id" title="method">show</span> <a id="t:5" class="idref" href="#t:5"><span class="id" title="binder">t</span></a> := "DexterSetup{"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> "token_caddr_: " <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> <span class="id" title="method">show</span> <a class="idref" href="ConCert.Examples.Dexter.DexterPrinters.html#t:5"><span class="id" title="variable">t</span></a>.(<a class="idref" href="ConCert.Examples.Dexter.Dexter.html#token_caddr_"><span class="id" title="projection">token_caddr_</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> <a class="idref" href="ConCert.Execution.Test.ChainPrinters.html#sep"><span class="id" title="definition">sep</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> "token_pool_: " <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> <span class="id" title="method">show</span> <a class="idref" href="ConCert.Examples.Dexter.DexterPrinters.html#t:5"><span class="id" title="variable">t</span></a>.(<a class="idref" href="ConCert.Examples.Dexter.Dexter.html#token_pool_"><span class="id" title="projection">token_pool_</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> "}"<br/>
+|}.<br/>
+
+<br/>
+<span class="id" title="keyword">Instance</span> <a id="showSerializedMsg" class="idref" href="#showSerializedMsg"><span class="id" title="instance">showSerializedMsg</span></a> : <span class="id" title="class">Show</span> <a class="idref" href="ConCert.Execution.Serializable.html#SerializedValue"><span class="id" title="record">SerializedValue</span></a> :=<br/>
+&nbsp;&nbsp;<a class="idref" href="ConCert.Execution.Test.ChainPrinters.html#0be3799fd5e2e7e5f0376d63e32f7a20"><span class="id" title="notation">Derive</span></a> <a class="idref" href="ConCert.Execution.Test.ChainPrinters.html#0be3799fd5e2e7e5f0376d63e32f7a20"><span class="id" title="notation">Show</span></a> <a class="idref" href="ConCert.Execution.Test.ChainPrinters.html#0be3799fd5e2e7e5f0376d63e32f7a20"><span class="id" title="notation">Msg</span></a> <a class="idref" href="ConCert.Execution.Test.ChainPrinters.html#0be3799fd5e2e7e5f0376d63e32f7a20"><span class="id" title="notation">&lt;</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.Dexter.Dexter.html#Msg"><span class="id" title="inductive">Dexter.Msg</span></a><a class="idref" href="ConCert.Execution.Test.ChainPrinters.html#0be3799fd5e2e7e5f0376d63e32f7a20"><span class="id" title="notation">,</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.Dexter.Dexter.html#Setup"><span class="id" title="record">Dexter.Setup</span></a><a class="idref" href="ConCert.Execution.Test.ChainPrinters.html#0be3799fd5e2e7e5f0376d63e32f7a20"><span class="id" title="notation">,</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.EIP20.EIP20Token.html#Msg"><span class="id" title="inductive">EIP20Token.Msg</span></a><a class="idref" href="ConCert.Execution.Test.ChainPrinters.html#0be3799fd5e2e7e5f0376d63e32f7a20"><span class="id" title="notation">,</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.EIP20.EIP20Token.html#Setup"><span class="id" title="record">EIP20Token.Setup</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="ConCert.Execution.Test.ChainPrinters.html#0be3799fd5e2e7e5f0376d63e32f7a20"><span class="id" title="notation">&gt;</span></a>.<br/>
+</div>
+</div>
+<div id="footer">
+  Generated by <a href="https://coq.inria.fr/">coqdoc</a> and improved with <a href="https://github.com/tebbi/coqdocjs">CoqdocJS</a> and <a href="https://github.com/jgallen23/toc">TOC</a>
+</div>
+</div>
+<script>
+  const elements = document.getElementsByClassName("libtitle");
+  while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+  }
+  if (window.location.pathname.endsWith("/toc.html")) {
+      const jstocDiv = document.getElementById("js-toc");
+      jstocDiv.classList.remove("toc");
+      jstocDiv.classList.add("jstoc-hidden");
+      const jstocHeaderDiv = document.getElementById("js-toc-header");
+      jstocHeaderDiv.classList.add("jstoc-hidden");
+      const mainDiv = document.getElementById("main");
+      mainDiv.classList.add("jstoc-hidden-main");
+      const toggleDiv = document.getElementById("toggle-toc");
+      toggleDiv.classList.add("jstoc-hidden");
+  }
+  console.log(window.location.pathname);
+</script>
+<script type="text/javascript" src="toc.js"></script>
+</body>
+
+</html>

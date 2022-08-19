@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<link href="coqdoc.css" rel="stylesheet" type="text/css" />
+<link href="coqdocjs.css" rel="stylesheet" type="text/css"/>
+<link href="toc.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="config.js"></script>
+<script type="text/javascript" src="coqdocjs.js"></script>
+</head>
+
+<body onload="document.getElementById('content').focus()">
+  <div id="header">
+    <span class="left">
+      <span class="modulename"> <script> document.write(document.title) </script> </span>
+      <span id="toggle-toc">Contents</span>
+    </span>
+
+    <span class="button" id="toggle-proofs"></span>
+
+    <span class="right">
+      <a href="https://github.com/AU-COBRA/ConCert" target="_balnk">Project Page</a>
+      <a href="index.html">Index</a>
+      <a href="toc.html">Table of contents</a>
+    </span>
+</div>
+  <div id="content" tabindex="-1" onblur="document.getElementById('content').focus()">
+    <div id="js-toc" class="toc" data-toc="h1,h2,h3,h4" data-toc-container="doc" data-toc-offset="-40">
+      <div id="js-toc-header" class="toc-header">Contents:</div>
+    </div>
+    <div id="main">
+<h1 class="libtitle">Library ConCert.Examples.EIP20.EIP20CameLIGOExtraction</h1>
+
+<div class="code">
+</div>
+
+<div class="doc">
+<a id="lab207"></a><h1 class="section">Extraction of various contracts to CameLIGO</h1>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">Coq</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#"><span class="id" title="library">String</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">MetaCoq.Template</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.All.html#"><span class="id" title="library">All</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Extraction</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Extraction.Common.html#"><span class="id" title="library">Common</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Extraction</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Extraction.CameLIGOPretty.html#"><span class="id" title="library">CameLIGOPretty</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Extraction</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Extraction.CameLIGOExtract.html#"><span class="id" title="library">CameLIGOExtract</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Execution</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Execution.Blockchain.html#"><span class="id" title="library">Blockchain</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Execution</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Execution.Containers.html#"><span class="id" title="library">Containers</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Execution</span> <span class="id" title="keyword">Require</span> <a class="idref" href="ConCert.Execution.ContractCommon.html#"><span class="id" title="library">ContractCommon</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Examples.EIP20</span> <span class="id" title="keyword">Require</span> <a class="idref" href="ConCert.Examples.EIP20.EIP20Token.html#"><span class="id" title="library">EIP20Token</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">Local Open</span> <span class="id" title="keyword">Scope</span> <span class="id" title="var">string_scope</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Local</span> <span class="id" title="var">Existing</span> <span class="id" title="keyword">Instance</span> <span class="id" title="var">PrintConfShortNames.PrintWithShortNames</span>.<br/>
+
+<br/>
+<span class="comment">(*&nbsp;Notation&nbsp;bs_to_s&nbsp;:=&nbsp;bytestring.String.to_string.&nbsp;*)</span><br/>
+<span class="comment">(*&nbsp;Notation&nbsp;s_to_bs&nbsp;:=&nbsp;bytestring.String.of_string.&nbsp;*)</span><br/>
+
+<br/>
+<span class="id" title="keyword">Section</span> <a id="EIP20TokenExtraction" class="idref" href="#EIP20TokenExtraction"><span class="id" title="section">EIP20TokenExtraction</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Import</span> <span class="id" title="var">EIP20Token</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Context</span> `{<a id="H:1" class="idref" href="#H:1"><span class="id" title="binder">ChainBase</span></a>}.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a id="init" class="idref" href="#init"><span class="id" title="definition">init</span></a> (<a id="setup:2" class="idref" href="#setup:2"><span class="id" title="binder">setup</span></a> : <a class="idref" href="ConCert.Examples.EIP20.EIP20Token.html#Setup"><span class="id" title="record">EIP20Token.Setup</span></a>) : <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#option"><span class="id" title="inductive">option</span></a> <a class="idref" href="ConCert.Examples.EIP20.EIP20Token.html#State"><span class="id" title="record">EIP20Token.State</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#Some"><span class="id" title="constructor">Some</span></a> {| <a class="idref" href="ConCert.Examples.EIP20.EIP20Token.html#total_supply"><span class="id" title="projection">total_supply</span></a> := <a class="idref" href="ConCert.Examples.EIP20.EIP20CameLIGOExtraction.html#setup:2"><span class="id" title="variable">setup</span></a>.(<a class="idref" href="ConCert.Examples.EIP20.EIP20Token.html#init_amount"><span class="id" title="projection">init_amount</span></a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.EIP20.EIP20Token.html#balances"><span class="id" title="projection">balances</span></a> <a class="idref" href="ConCert.Extraction.Common.html#to_kername"><span class="id" title="definition">:=</span></a> <a class="idref" href="ConCert.Execution.ContractCommon.html#AddressMap.add"><span class="id" title="definition">ContractCommon.AddressMap.add</span></a> (<a class="idref" href="ConCert.Examples.EIP20.EIP20Token.html#owner"><span class="id" title="projection">EIP20Token.owner</span></a> <a class="idref" href="ConCert.Examples.EIP20.EIP20CameLIGOExtraction.html#setup:2"><span class="id" title="variable">setup</span></a>) (<a class="idref" href="ConCert.Examples.EIP20.EIP20Token.html#init_amount"><span class="id" title="projection">init_amount</span></a> <a class="idref" href="ConCert.Examples.EIP20.EIP20CameLIGOExtraction.html#setup:2"><span class="id" title="variable">setup</span></a>) <a class="idref" href="ConCert.Execution.ContractCommon.html#AddressMap.empty"><span class="id" title="definition">ContractCommon.AddressMap.empty</span></a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.EIP20.EIP20Token.html#allowances"><span class="id" title="projection">allowances</span></a> := <a class="idref" href="ConCert.Execution.ContractCommon.html#AddressMap.empty"><span class="id" title="definition">ContractCommon.AddressMap.empty</span></a> |}.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a id="EIP20Token_init_eq_init" class="idref" href="#EIP20Token_init_eq_init"><span class="id" title="lemma">EIP20Token_init_eq_init</span></a> <a id="chain:3" class="idref" href="#chain:3"><span class="id" title="binder">chain</span></a> <a id="ctx:4" class="idref" href="#ctx:4"><span class="id" title="binder">ctx</span></a> <a id="setup:5" class="idref" href="#setup:5"><span class="id" title="binder">setup</span></a> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.EIP20.EIP20Token.html#init"><span class="id" title="definition">EIP20Token.init</span></a> <a class="idref" href="ConCert.Examples.EIP20.EIP20CameLIGOExtraction.html#chain:3"><span class="id" title="variable">chain</span></a> <a class="idref" href="ConCert.Examples.EIP20.EIP20CameLIGOExtraction.html#ctx:4"><span class="id" title="variable">ctx</span></a> <a class="idref" href="ConCert.Examples.EIP20.EIP20CameLIGOExtraction.html#setup:5"><span class="id" title="variable">setup</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Logic.html#6cd0f7b28b6092304087c7049437bb1a"><span class="id" title="notation">=</span></a> <a class="idref" href="ConCert.Examples.EIP20.EIP20CameLIGOExtraction.html#init"><span class="id" title="definition">init</span></a> <a class="idref" href="ConCert.Examples.EIP20.EIP20CameLIGOExtraction.html#setup:5"><span class="id" title="variable">setup</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Proof</span>. <span class="id" title="tactic">reflexivity</span>. <span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a id="receive_" class="idref" href="#receive_"><span class="id" title="definition">receive_</span></a> (<a id="chain:6" class="idref" href="#chain:6"><span class="id" title="binder">chain</span></a> : <a class="idref" href="ConCert.Execution.Blockchain.html#Chain"><span class="id" title="record">Chain</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a id="ctx:7" class="idref" href="#ctx:7"><span class="id" title="binder">ctx</span></a> : <a class="idref" href="ConCert.Execution.Blockchain.html#ContractCallContext"><span class="id" title="record">ContractCallContext</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a id="state:8" class="idref" href="#state:8"><span class="id" title="binder">state</span></a> : <a class="idref" href="ConCert.Examples.EIP20.EIP20Token.html#State"><span class="id" title="record">EIP20Token.State</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a id="maybe_msg:9" class="idref" href="#maybe_msg:9"><span class="id" title="binder">maybe_msg</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#option"><span class="id" title="inductive">option</span></a> <a class="idref" href="ConCert.Examples.EIP20.EIP20Token.html#Msg"><span class="id" title="inductive">EIP20Token.Msg</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#option"><span class="id" title="inductive">option</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="ConCert.Execution.Blockchain.html#ActionBody"><span class="id" title="inductive">ActionBody</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#11c698c8685bb8ab1cf725545c085ac4"><span class="id" title="notation">*</span></a> <a class="idref" href="ConCert.Examples.EIP20.EIP20Token.html#State"><span class="id" title="record">EIP20Token.State</span></a>) :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="ConCert.Examples.EIP20.EIP20Token.html#receive"><span class="id" title="definition">EIP20Token.receive</span></a> <a class="idref" href="ConCert.Examples.EIP20.EIP20CameLIGOExtraction.html#chain:6"><span class="id" title="variable">chain</span></a> <a class="idref" href="ConCert.Examples.EIP20.EIP20CameLIGOExtraction.html#ctx:7"><span class="id" title="variable">ctx</span></a> <a class="idref" href="ConCert.Examples.EIP20.EIP20CameLIGOExtraction.html#state:8"><span class="id" title="variable">state</span></a> <a class="idref" href="ConCert.Examples.EIP20.EIP20CameLIGOExtraction.html#maybe_msg:9"><span class="id" title="variable">maybe_msg</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#Some"><span class="id" title="constructor">Some</span></a> <span class="id" title="var">x</span> =&gt; <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#Some"><span class="id" title="constructor">Some</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">(</span></a><span class="id" title="var">x</span><a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.utils.MCProd.html#::pair_scope:x_'.2'"><span class="id" title="notation">.2</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">,</span></a> <span class="id" title="var">x</span><a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.utils.MCProd.html#::pair_scope:x_'.1'"><span class="id" title="notation">.1</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">)</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#None"><span class="id" title="constructor">None</span></a> =&gt; <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#None"><span class="id" title="constructor">None</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a id="LIGO_EIP20Token_MODULE" class="idref" href="#LIGO_EIP20Token_MODULE"><span class="id" title="definition">LIGO_EIP20Token_MODULE</span></a>  : <a class="idref" href="ConCert.Extraction.CameLIGOExtract.html#CameLIGOMod"><span class="id" title="record">CameLIGOMod</span></a> <a class="idref" href="ConCert.Examples.EIP20.EIP20Token.html#Msg"><span class="id" title="inductive">EIP20Token.Msg</span></a> <a class="idref" href="ConCert.Execution.Blockchain.html#ContractCallContext"><span class="id" title="record">ContractCallContext</span></a> <a class="idref" href="ConCert.Examples.EIP20.EIP20Token.html#Setup"><span class="id" title="record">EIP20Token.Setup</span></a> <a class="idref" href="ConCert.Examples.EIP20.EIP20Token.html#State"><span class="id" title="record">EIP20Token.State</span></a> <a class="idref" href="ConCert.Execution.Blockchain.html#ActionBody"><span class="id" title="inductive">ActionBody</span></a> :=<br/>
+&nbsp;&nbsp;{| <span class="comment">(*&nbsp;a&nbsp;name&nbsp;for&nbsp;the&nbsp;definition&nbsp;with&nbsp;the&nbsp;extracted&nbsp;code&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Extraction.CameLIGOExtract.html#lmd_module_name"><span class="id" title="projection">lmd_module_name</span></a> := "cameLIGO_eip20token" ;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;definitions&nbsp;of&nbsp;operations&nbsp;on&nbsp;pairs&nbsp;and&nbsp;ints&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Extraction.CameLIGOExtract.html#lmd_prelude"><span class="id" title="projection">lmd_prelude</span></a> := <a class="idref" href="ConCert.Extraction.CameLIGOPretty.html#CameLIGOPrelude"><span class="id" title="definition">CameLIGOPrelude</span></a>;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;initial&nbsp;storage&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Extraction.CameLIGOExtract.html#lmd_init"><span class="id" title="projection">lmd_init</span></a> := <a class="idref" href="ConCert.Examples.EIP20.EIP20CameLIGOExtraction.html#init"><span class="id" title="definition">init</span></a> ;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;NOTE:&nbsp;printed&nbsp;as&nbsp;local&nbsp;<span class="inlinecode"><span class="id" title="keyword">let</span></span>-bound&nbsp;definitions&nbsp;in&nbsp;the&nbsp;init&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Extraction.CameLIGOExtract.html#lmd_init_prelude"><span class="id" title="projection">lmd_init_prelude</span></a> := "";<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;TODO:&nbsp;maybe&nbsp;not&nbsp;needed,&nbsp;<span class="inlinecode"><span class="id" title="var">lmd_prelude</span></span>&nbsp;should&nbsp;be&nbsp;enough&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Extraction.CameLIGOExtract.html#lmd_receive_prelude"><span class="id" title="projection">lmd_receive_prelude</span></a> := "";<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;the&nbsp;main&nbsp;functionality&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Extraction.CameLIGOExtract.html#lmd_receive"><span class="id" title="projection">lmd_receive</span></a> := <a class="idref" href="ConCert.Examples.EIP20.EIP20CameLIGOExtraction.html#receive_"><span class="id" title="definition">receive_</span></a> ;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;code&nbsp;for&nbsp;the&nbsp;entry&nbsp;point&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Extraction.CameLIGOExtract.html#lmd_entry_point"><span class="id" title="projection">lmd_entry_point</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Extraction.CameLIGOPretty.html#printMain"><span class="id" title="definition">CameLIGOPretty.printMain</span></a> "receive_" "msg" "state" |}.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a id="TT_remap_eip20token" class="idref" href="#TT_remap_eip20token"><span class="id" title="definition">TT_remap_eip20token</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> (<a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.Kernames.html#kername"><span class="id" title="definition">kername</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#11c698c8685bb8ab1cf725545c085ac4"><span class="id" title="notation">*</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">String.string</span></a>) :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Extraction.CameLIGOExtract.html#TT_remap_default"><span class="id" title="definition">TT_remap_default</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#bc347c51eaf667706ae54503b26d52c6"><span class="id" title="notation">++</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">[</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Extraction.Common.html#remap"><span class="id" title="definition">remap</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">&lt;%%</span></a> @<a class="idref" href="ConCert.Execution.Blockchain.html#ContractCallContext"><span class="id" title="record">ContractCallContext</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">%%&gt;</span></a> <a class="idref" href="ConCert.Extraction.CameLIGOPretty.html#CameLIGO_call_ctx_type_name"><span class="id" title="definition">CameLIGO_call_ctx_type_name</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a> <a class="idref" href="ConCert.Extraction.Common.html#remap"><span class="id" title="definition">remap</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">&lt;%%</span></a> @<a class="idref" href="ConCert.Execution.Blockchain.html#ctx_from"><span class="id" title="projection">ctx_from</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">%%&gt;</span></a> "ctx_from"<br/>
+&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a> <a class="idref" href="ConCert.Extraction.Common.html#remap"><span class="id" title="definition">remap</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">&lt;%%</span></a> @<a class="idref" href="ConCert.Execution.Blockchain.html#ActionBody"><span class="id" title="inductive">ActionBody</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">%%&gt;</span></a> "operation"<br/>
+<br/>
+&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a> <a class="idref" href="ConCert.Extraction.Common.html#remap"><span class="id" title="definition">remap</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">&lt;%%</span></a> @<a class="idref" href="ConCert.Execution.Containers.html#FMap"><span class="id" title="abbreviation">FMap</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">%%&gt;</span></a> "map"<br/>
+&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a> <a class="idref" href="ConCert.Extraction.Common.html#remap"><span class="id" title="definition">remap</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">&lt;%%</span></a> @<a class="idref" href="ConCert.Execution.ContractCommon.html#AddressMap.add"><span class="id" title="definition">ContractCommon.AddressMap.add</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">%%&gt;</span></a> "Map.add"<br/>
+&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a> <a class="idref" href="ConCert.Extraction.Common.html#remap"><span class="id" title="definition">remap</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">&lt;%%</span></a> @<a class="idref" href="ConCert.Execution.ContractCommon.html#AddressMap.find"><span class="id" title="definition">ContractCommon.AddressMap.find</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">%%&gt;</span></a> "Map.find_opt"<br/>
+&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a> <a class="idref" href="ConCert.Extraction.Common.html#remap"><span class="id" title="definition">remap</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">&lt;%%</span></a> @<a class="idref" href="ConCert.Execution.ContractCommon.html#AddressMap.empty"><span class="id" title="definition">ContractCommon.AddressMap.empty</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">%%&gt;</span></a> "Map.empty"<br/>
+&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">]</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a id="TT_inlines_eip20token" class="idref" href="#TT_inlines_eip20token"><span class="id" title="definition">TT_inlines_eip20token</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.Kernames.html#kername"><span class="id" title="definition">kername</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">[</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">&lt;%%</span></a> <a class="idref" href="ConCert.Execution.Monads.html#Monad_option"><span class="id" title="instance">Monads.Monad_option</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">%%&gt;</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">&lt;%%</span></a> @<a class="idref" href="ConCert.Execution.Monads.html#bind"><span class="id" title="method">Monads.bind</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">%%&gt;</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">&lt;%%</span></a> @<a class="idref" href="ConCert.Execution.Monads.html#ret"><span class="id" title="method">Monads.ret</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">%%&gt;</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">&lt;%%</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#bool_rect"><span class="id" title="definition">bool_rect</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">%%&gt;</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">&lt;%%</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#bool_rec"><span class="id" title="definition">bool_rec</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">%%&gt;</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">&lt;%%</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#option_map"><span class="id" title="definition">option_map</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">%%&gt;</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">&lt;%%</span></a> @<a class="idref" href="ConCert.Utils.Extras.html#with_default"><span class="id" title="definition">Extras.with_default</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">%%&gt;</span></a><br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">&lt;%%</span></a> @<a class="idref" href="ConCert.Examples.EIP20.EIP20Token.html#setter_from_getter_State_balances"><span class="id" title="definition">setter_from_getter_State_balances</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">%%&gt;</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">&lt;%%</span></a> @<a class="idref" href="ConCert.Examples.EIP20.EIP20Token.html#setter_from_getter_State_total_supply"><span class="id" title="definition">setter_from_getter_State_total_supply</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">%%&gt;</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">&lt;%%</span></a> @<a class="idref" href="ConCert.Examples.EIP20.EIP20Token.html#setter_from_getter_State_allowances"><span class="id" title="definition">setter_from_getter_State_allowances</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">%%&gt;</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">]</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Time</span> <span class="id" title="var">MetaCoq</span> <span class="id" title="var">Run</span><br/>
+&nbsp;&nbsp;(<a class="idref" href="ConCert.Extraction.CameLIGOExtract.html#CameLIGO_prepare_extraction"><span class="id" title="definition">CameLIGO_prepare_extraction</span></a> <a class="idref" href="ConCert.Examples.EIP20.EIP20CameLIGOExtraction.html#TT_inlines_eip20token"><span class="id" title="definition">TT_inlines_eip20token</span></a> <a class="idref" href="ConCert.Examples.EIP20.EIP20CameLIGOExtraction.html#TT_remap_eip20token"><span class="id" title="definition">TT_remap_eip20token</span></a> <a class="idref" href="ConCert.Extraction.CameLIGOExtract.html#TT_rename_ctors_default"><span class="id" title="definition">TT_rename_ctors_default</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#ae9a5e1034e143b218b09d8e454472bd"><span class="id" title="notation">[]</span></a> "cctx_instance" <a class="idref" href="ConCert.Examples.EIP20.EIP20CameLIGOExtraction.html#LIGO_EIP20Token_MODULE"><span class="id" title="definition">LIGO_EIP20Token_MODULE</span></a> ).<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Time</span> <span class="id" title="keyword">Definition</span> <a id="cameLIGO_eip20token" class="idref" href="#cameLIGO_eip20token"><span class="id" title="definition">cameLIGO_eip20token</span></a> := <span class="id" title="keyword">Eval</span> <span class="id" title="keyword">vm_compute</span> <span class="id" title="tactic">in</span> <a class="idref" href="ConCert.Examples.EIP20.EIP20CameLIGOExtraction.html#cameLIGO_eip20token_prepared"><span class="id" title="definition">cameLIGO_eip20token_prepared</span></a>.<br/>
+</div>
+
+<div class="doc">
+We redirect the extraction result for later processing and compiling with the CameLIGO compiler 
+</div>
+<div class="code">
+&nbsp;&nbsp;<span class="comment">(*&nbsp;TODO:&nbsp;uncomment,&nbsp;once&nbsp;this&nbsp;fix&nbsp;https://gitlab.com/ligolang/ligo/-/merge_requests/1452&nbsp;makes&nbsp;it<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;into&nbsp;a&nbsp;release&nbsp;version.&nbsp;*)</span><br/>
+&nbsp;&nbsp;<span class="id" title="var">Redirect</span> "../extraction/tests/extracted-code/cameligo-extract/eip20tokenCertifiedExtraction.mligo"<br/>
+&nbsp;&nbsp;<span class="id" title="var">MetaCoq</span> <span class="id" title="var">Run</span> (<a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.TemplateMonad.Core.html#tmMsg"><span class="id" title="constructor">tmMsg</span></a> (<a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.utils.bytestring.html#String.of_string"><span class="id" title="definition">bytestring.String.of_string</span></a> <a class="idref" href="ConCert.Examples.EIP20.EIP20CameLIGOExtraction.html#cameLIGO_eip20token"><span class="id" title="definition">cameLIGO_eip20token</span></a>)).<br/>
+
+<br/>
+<span class="id" title="keyword">End</span> <a class="idref" href="ConCert.Examples.EIP20.EIP20CameLIGOExtraction.html#EIP20TokenExtraction"><span class="id" title="section">EIP20TokenExtraction</span></a>.<br/>
+</div>
+</div>
+<div id="footer">
+  Generated by <a href="https://coq.inria.fr/">coqdoc</a> and improved with <a href="https://github.com/tebbi/coqdocjs">CoqdocJS</a> and <a href="https://github.com/jgallen23/toc">TOC</a>
+</div>
+</div>
+<script>
+  const elements = document.getElementsByClassName("libtitle");
+  while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+  }
+  if (window.location.pathname.endsWith("/toc.html")) {
+      const jstocDiv = document.getElementById("js-toc");
+      jstocDiv.classList.remove("toc");
+      jstocDiv.classList.add("jstoc-hidden");
+      const jstocHeaderDiv = document.getElementById("js-toc-header");
+      jstocHeaderDiv.classList.add("jstoc-hidden");
+      const mainDiv = document.getElementById("main");
+      mainDiv.classList.add("jstoc-hidden-main");
+      const toggleDiv = document.getElementById("toggle-toc");
+      toggleDiv.classList.add("jstoc-hidden");
+  }
+  console.log(window.location.pathname);
+</script>
+<script type="text/javascript" src="toc.js"></script>
+</body>
+
+</html>

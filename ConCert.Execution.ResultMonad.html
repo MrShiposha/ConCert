@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<link href="coqdoc.css" rel="stylesheet" type="text/css" />
+<link href="coqdocjs.css" rel="stylesheet" type="text/css"/>
+<link href="toc.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="config.js"></script>
+<script type="text/javascript" src="coqdocjs.js"></script>
+</head>
+
+<body onload="document.getElementById('content').focus()">
+  <div id="header">
+    <span class="left">
+      <span class="modulename"> <script> document.write(document.title) </script> </span>
+      <span id="toggle-toc">Contents</span>
+    </span>
+
+    <span class="button" id="toggle-proofs"></span>
+
+    <span class="right">
+      <a href="https://github.com/AU-COBRA/ConCert" target="_balnk">Project Page</a>
+      <a href="index.html">Index</a>
+      <a href="toc.html">Table of contents</a>
+    </span>
+</div>
+  <div id="content" tabindex="-1" onblur="document.getElementById('content').focus()">
+    <div id="js-toc" class="toc" data-toc="h1,h2,h3,h4" data-toc-container="doc" data-toc-offset="-40">
+      <div id="js-toc-header" class="toc-header">Contents:</div>
+    </div>
+    <div id="main">
+<h1 class="libtitle">Library ConCert.Execution.ResultMonad</h1>
+
+<div class="code">
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Execution</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Execution.Monads.html#"><span class="id" title="library">Monads</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">Inductive</span> <a id="result" class="idref" href="#result"><span class="id" title="inductive">result</span></a> <a id="T:1" class="idref" href="#T:1"><span class="id" title="binder">T</span></a> <a id="E:2" class="idref" href="#E:2"><span class="id" title="binder">E</span></a> :=<br/>
+| <a id="Ok" class="idref" href="#Ok"><span class="id" title="constructor">Ok</span></a> (<a id="t:5" class="idref" href="#t:5"><span class="id" title="binder">t</span></a> : <a class="idref" href="ConCert.Execution.ResultMonad.html#T:1"><span class="id" title="variable">T</span></a>)<br/>
+| <a id="Err" class="idref" href="#Err"><span class="id" title="constructor">Err</span></a> (<a id="e:6" class="idref" href="#e:6"><span class="id" title="binder">e</span></a> : <a class="idref" href="ConCert.Execution.ResultMonad.html#E:2"><span class="id" title="variable">E</span></a>).<br/>
+
+<br/>
+<span class="id" title="keyword">Arguments</span> <a class="idref" href="ConCert.Execution.ResultMonad.html#Ok"><span class="id" title="constructor">Ok</span></a> {<span class="id" title="var">_</span> <span class="id" title="var">_</span>}.<br/>
+<span class="id" title="keyword">Arguments</span> <a class="idref" href="ConCert.Execution.ResultMonad.html#Err"><span class="id" title="constructor">Err</span></a> {<span class="id" title="var">_</span> <span class="id" title="var">_</span>}.<br/>
+
+<br/>
+<span class="id" title="keyword">Global Instance</span> <a id="Monad_result" class="idref" href="#Monad_result"><span class="id" title="instance">Monad_result</span></a> {<a id="E:7" class="idref" href="#E:7"><span class="id" title="binder">E</span></a>} : <a class="idref" href="ConCert.Execution.Monads.html#Monad"><span class="id" title="class">Monad</span></a> (<span class="id" title="keyword">fun</span> <a id="T:8" class="idref" href="#T:8"><span class="id" title="binder">T</span></a> =&gt; <a class="idref" href="ConCert.Execution.ResultMonad.html#result"><span class="id" title="inductive">result</span></a> <a class="idref" href="ConCert.Execution.ResultMonad.html#T:8"><span class="id" title="variable">T</span></a> <a class="idref" href="ConCert.Execution.ResultMonad.html#E:7"><span class="id" title="variable">E</span></a>) :=<br/>
+&nbsp;&nbsp;{| <a class="idref" href="ConCert.Execution.Monads.html#ret"><span class="id" title="method">ret</span></a> <span class="id" title="var">_</span> <a id="t:9" class="idref" href="#t:9"><span class="id" title="binder">t</span></a> := <a class="idref" href="ConCert.Execution.ResultMonad.html#Ok"><span class="id" title="constructor">Ok</span></a> <a class="idref" href="ConCert.Execution.ResultMonad.html#t:9"><span class="id" title="variable">t</span></a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Execution.Monads.html#bind"><span class="id" title="method">bind</span></a> <span class="id" title="var">_</span> <span class="id" title="var">_</span> <a id="mt:10" class="idref" href="#mt:10"><span class="id" title="binder">mt</span></a> <a id="f:11" class="idref" href="#f:11"><span class="id" title="binder">f</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="ConCert.Execution.ResultMonad.html#mt:10"><span class="id" title="variable">mt</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="ConCert.Execution.ResultMonad.html#Ok"><span class="id" title="constructor">Ok</span></a> <span class="id" title="var">t</span> =&gt; <a class="idref" href="ConCert.Execution.ResultMonad.html#f:11"><span class="id" title="variable">f</span></a> <span class="id" title="var">t</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="ConCert.Execution.ResultMonad.html#Err"><span class="id" title="constructor">Err</span></a> <span class="id" title="var">e</span> =&gt; <a class="idref" href="ConCert.Execution.ResultMonad.html#Err"><span class="id" title="constructor">Err</span></a> <span class="id" title="var">e</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span> |}.<br/>
+
+<br/>
+<span class="id" title="keyword">Definition</span> <a id="result_of_option" class="idref" href="#result_of_option"><span class="id" title="definition">result_of_option</span></a> {<a id="T:13" class="idref" href="#T:13"><span class="id" title="binder">T</span></a> <a id="E:14" class="idref" href="#E:14"><span class="id" title="binder">E</span></a>} (<a id="o:15" class="idref" href="#o:15"><span class="id" title="binder">o</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#option"><span class="id" title="inductive">option</span></a> <a class="idref" href="ConCert.Execution.ResultMonad.html#T:13"><span class="id" title="variable">T</span></a>) (<a id="err:16" class="idref" href="#err:16"><span class="id" title="binder">err</span></a> : <a class="idref" href="ConCert.Execution.ResultMonad.html#E:14"><span class="id" title="variable">E</span></a>) : <a class="idref" href="ConCert.Execution.ResultMonad.html#result"><span class="id" title="inductive">result</span></a> <a class="idref" href="ConCert.Execution.ResultMonad.html#T:13"><span class="id" title="variable">T</span></a> <a class="idref" href="ConCert.Execution.ResultMonad.html#E:14"><span class="id" title="variable">E</span></a> :=<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="ConCert.Execution.ResultMonad.html#o:15"><span class="id" title="variable">o</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;| <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#Some"><span class="id" title="constructor">Some</span></a> <span class="id" title="var">a</span> =&gt; <a class="idref" href="ConCert.Execution.ResultMonad.html#Ok"><span class="id" title="constructor">Ok</span></a> <span class="id" title="var">a</span><br/>
+&nbsp;&nbsp;| <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#None"><span class="id" title="constructor">None</span></a> =&gt; <a class="idref" href="ConCert.Execution.ResultMonad.html#Err"><span class="id" title="constructor">Err</span></a> <a class="idref" href="ConCert.Execution.ResultMonad.html#err:16"><span class="id" title="variable">err</span></a><br/>
+&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Definition</span> <a id="option_of_result" class="idref" href="#option_of_result"><span class="id" title="definition">option_of_result</span></a> {<a id="T:18" class="idref" href="#T:18"><span class="id" title="binder">T</span></a> <a id="E:19" class="idref" href="#E:19"><span class="id" title="binder">E</span></a>} (<a id="r:20" class="idref" href="#r:20"><span class="id" title="binder">r</span></a> : <a class="idref" href="ConCert.Execution.ResultMonad.html#result"><span class="id" title="inductive">result</span></a> <a class="idref" href="ConCert.Execution.ResultMonad.html#T:18"><span class="id" title="variable">T</span></a> <a class="idref" href="ConCert.Execution.ResultMonad.html#E:19"><span class="id" title="variable">E</span></a>) : <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#option"><span class="id" title="inductive">option</span></a> <a class="idref" href="ConCert.Execution.ResultMonad.html#T:18"><span class="id" title="variable">T</span></a> :=<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="ConCert.Execution.ResultMonad.html#r:20"><span class="id" title="variable">r</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;| <a class="idref" href="ConCert.Execution.ResultMonad.html#Ok"><span class="id" title="constructor">Ok</span></a> <span class="id" title="var">t</span> =&gt; <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#Some"><span class="id" title="constructor">Some</span></a> <span class="id" title="var">t</span><br/>
+&nbsp;&nbsp;| <a class="idref" href="ConCert.Execution.ResultMonad.html#Err"><span class="id" title="constructor">Err</span></a> <span class="id" title="var">e</span> =&gt; <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#None"><span class="id" title="constructor">None</span></a><br/>
+&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Definition</span> <a id="unpack_result" class="idref" href="#unpack_result"><span class="id" title="definition">unpack_result</span></a> {<a id="T:22" class="idref" href="#T:22"><span class="id" title="binder">T</span></a> <a id="E:23" class="idref" href="#E:23"><span class="id" title="binder">E</span></a>} (<a id="r:24" class="idref" href="#r:24"><span class="id" title="binder">r</span></a> : <a class="idref" href="ConCert.Execution.ResultMonad.html#result"><span class="id" title="inductive">result</span></a> <a class="idref" href="ConCert.Execution.ResultMonad.html#T:22"><span class="id" title="variable">T</span></a> <a class="idref" href="ConCert.Execution.ResultMonad.html#E:23"><span class="id" title="variable">E</span></a>) :=<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="ConCert.Execution.ResultMonad.html#r:24"><span class="id" title="variable">r</span></a> <span class="id" title="keyword">return</span> <span class="id" title="keyword">match</span> <a class="idref" href="ConCert.Execution.ResultMonad.html#r:25"><span class="id" title="variable">r</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="ConCert.Execution.ResultMonad.html#Ok"><span class="id" title="constructor">Ok</span></a> <span class="id" title="var">_</span> =&gt; <a class="idref" href="ConCert.Execution.ResultMonad.html#T:22"><span class="id" title="variable">T</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="ConCert.Execution.ResultMonad.html#Err"><span class="id" title="constructor">Err</span></a> <span class="id" title="var">_</span> =&gt; <a class="idref" href="ConCert.Execution.ResultMonad.html#E:23"><span class="id" title="variable">E</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;| <a class="idref" href="ConCert.Execution.ResultMonad.html#Ok"><span class="id" title="constructor">Ok</span></a> <span class="id" title="var">t</span> =&gt; <span class="id" title="var">t</span><br/>
+&nbsp;&nbsp;| <a class="idref" href="ConCert.Execution.ResultMonad.html#Err"><span class="id" title="constructor">Err</span></a> <span class="id" title="var">e</span> =&gt; <span class="id" title="var">e</span><br/>
+&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+</div>
+</div>
+<div id="footer">
+  Generated by <a href="https://coq.inria.fr/">coqdoc</a> and improved with <a href="https://github.com/tebbi/coqdocjs">CoqdocJS</a> and <a href="https://github.com/jgallen23/toc">TOC</a>
+</div>
+</div>
+<script>
+  const elements = document.getElementsByClassName("libtitle");
+  while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+  }
+  if (window.location.pathname.endsWith("/toc.html")) {
+      const jstocDiv = document.getElementById("js-toc");
+      jstocDiv.classList.remove("toc");
+      jstocDiv.classList.add("jstoc-hidden");
+      const jstocHeaderDiv = document.getElementById("js-toc-header");
+      jstocHeaderDiv.classList.add("jstoc-hidden");
+      const mainDiv = document.getElementById("main");
+      mainDiv.classList.add("jstoc-hidden-main");
+      const toggleDiv = document.getElementById("toggle-toc");
+      toggleDiv.classList.add("jstoc-hidden");
+  }
+  console.log(window.location.pathname);
+</script>
+<script type="text/javascript" src="toc.js"></script>
+</body>
+
+</html>

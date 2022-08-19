@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<link href="coqdoc.css" rel="stylesheet" type="text/css" />
+<link href="coqdocjs.css" rel="stylesheet" type="text/css"/>
+<link href="toc.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="config.js"></script>
+<script type="text/javascript" src="coqdocjs.js"></script>
+</head>
+
+<body onload="document.getElementById('content').focus()">
+  <div id="header">
+    <span class="left">
+      <span class="modulename"> <script> document.write(document.title) </script> </span>
+      <span id="toggle-toc">Contents</span>
+    </span>
+
+    <span class="button" id="toggle-proofs"></span>
+
+    <span class="right">
+      <a href="https://github.com/AU-COBRA/ConCert" target="_balnk">Project Page</a>
+      <a href="index.html">Index</a>
+      <a href="toc.html">Table of contents</a>
+    </span>
+</div>
+  <div id="content" tabindex="-1" onblur="document.getElementById('content').focus()">
+    <div id="js-toc" class="toc" data-toc="h1,h2,h3,h4" data-toc-container="doc" data-toc-offset="-40">
+      <div id="js-toc-header" class="toc-header">Contents:</div>
+    </div>
+    <div id="main">
+<h1 class="libtitle">Library ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO</h1>
+
+<div class="code">
+</div>
+
+<div class="doc">
+<a id="lab257"></a><h1 class="section">Extraction of various contracts to CameLIGO</h1>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">Coq</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.ZArith.ZArith.html#"><span class="id" title="library">ZArith</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">Coq</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#"><span class="id" title="library">List</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">Coq</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#"><span class="id" title="library">String</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">MetaCoq.Template</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.All.html#"><span class="id" title="library">All</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Embedding</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Embedding.Notations.html#"><span class="id" title="library">Notations</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Embedding.Extraction</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Embedding.Extraction.PreludeExt.html#"><span class="id" title="library">PreludeExt</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Embedding.Extraction</span> <span class="id" title="keyword">Require</span> <a class="idref" href="ConCert.Embedding.Extraction.SimpleBlockchainExt.html#"><span class="id" title="library">SimpleBlockchainExt</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Examples.Crowdfunding</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingExt.html#"><span class="id" title="library">CrowdfundingExt</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Examples.Crowdfunding</span> <span class="id" title="keyword">Require</span> <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingDataExt.html#"><span class="id" title="library">CrowdfundingDataExt</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Extraction</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Extraction.Common.html#"><span class="id" title="library">Common</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Extraction</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Extraction.CameLIGOPretty.html#"><span class="id" title="library">CameLIGOPretty</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Extraction</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Extraction.CameLIGOExtract.html#"><span class="id" title="library">CameLIGOExtract</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Execution</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Execution.Blockchain.html#"><span class="id" title="library">Blockchain</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">Import</span> <span class="id" title="var">MCMonadNotation</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Local Open</span> <span class="id" title="keyword">Scope</span> <span class="id" title="var">string_scope</span>.<br/>
+<span class="id" title="keyword">Open</span> <span class="id" title="keyword">Scope</span> <span class="id" title="var">Z</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Existing Instance</span> <span class="id" title="var">PrintConfShortNames.PrintWithShortNames</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Module</span> <a id="Crowdfunding" class="idref" href="#Crowdfunding"><span class="id" title="module">Crowdfunding</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Notation</span> <a id="Crowdfunding.storage" class="idref" href="#Crowdfunding.storage"><span class="id" title="abbreviation">storage</span></a> := (<a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.utils.MCProd.html#52eddd74560fa276f934634af83eeaf4"><span class="id" title="notation">(</span></a><a class="idref" href="ConCert.Embedding.Extraction.PreludeExt.html#time_coq"><span class="id" title="inductive">time_coq</span></a> <a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.utils.MCProd.html#52eddd74560fa276f934634af83eeaf4"><span class="id" title="notation">×</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Numbers.BinNums.html#Z"><span class="id" title="inductive">Z</span></a> <a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.utils.MCProd.html#52eddd74560fa276f934634af83eeaf4"><span class="id" title="notation">×</span></a> <a class="idref" href="ConCert.Embedding.Extraction.PreludeExt.html#address_coq"><span class="id" title="inductive">address_coq</span></a><a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.utils.MCProd.html#52eddd74560fa276f934634af83eeaf4"><span class="id" title="notation">)</span></a> <a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.utils.MCProd.html#52eddd74560fa276f934634af83eeaf4"><span class="id" title="notation">×</span></a> <a class="idref" href="ConCert.Embedding.Extraction.PreludeExt.html#Maps.addr_map_coq"><span class="id" title="inductive">Maps.addr_map_coq</span></a> <a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.utils.MCProd.html#52eddd74560fa276f934634af83eeaf4"><span class="id" title="notation">×</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#bool"><span class="id" title="inductive">bool</span></a>).<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a id="Crowdfunding.crowdfunding_init" class="idref" href="#Crowdfunding.crowdfunding_init"><span class="id" title="definition">crowdfunding_init</span></a> (<a id="ctx:1" class="idref" href="#ctx:1"><span class="id" title="binder">ctx</span></a> : <a class="idref" href="ConCert.Execution.Blockchain.html#ContractCallContext"><span class="id" title="record">ContractCallContext</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a id="setup:2" class="idref" href="#setup:2"><span class="id" title="binder">setup</span></a> : (<a class="idref" href="ConCert.Embedding.Extraction.PreludeExt.html#time_coq"><span class="id" title="inductive">time_coq</span></a> <a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.utils.MCProd.html#52eddd74560fa276f934634af83eeaf4"><span class="id" title="notation">×</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Numbers.BinNums.html#Z"><span class="id" title="inductive">Z</span></a> <a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.utils.MCProd.html#52eddd74560fa276f934634af83eeaf4"><span class="id" title="notation">×</span></a> <a class="idref" href="ConCert.Embedding.Extraction.PreludeExt.html#address_coq"><span class="id" title="inductive">address_coq</span></a>)) : <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#option"><span class="id" title="inductive">option</span></a> <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#Crowdfunding.storage"><span class="id" title="abbreviation">storage</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">if</span> <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#ctx:1"><span class="id" title="variable">ctx</span></a>.(<a class="idref" href="ConCert.Execution.Blockchain.html#ctx_amount"><span class="id" title="projection">ctx_amount</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.ZArith.BinInt.html#f10153ef1a81fe79ed16d848b456c79b"><span class="id" title="notation">=?</span></a> 0 <span class="id" title="keyword">then</span> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#Some"><span class="id" title="constructor">Some</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">(</span></a><a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#setup:2"><span class="id" title="variable">setup</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">,</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">(</span></a><a class="idref" href="ConCert.Embedding.Extraction.PreludeExt.html#Maps.mnil"><span class="id" title="constructor">Maps.mnil</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">,</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#false"><span class="id" title="constructor">false</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">))</span></a> <span class="id" title="keyword">else</span> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#None"><span class="id" title="constructor">None</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a id="Crowdfunding.init" class="idref" href="#Crowdfunding.init"><span class="id" title="definition">init</span></a> (<a id="setup:3" class="idref" href="#setup:3"><span class="id" title="binder">setup</span></a> : (<a class="idref" href="ConCert.Embedding.Extraction.PreludeExt.html#time_coq"><span class="id" title="inductive">time_coq</span></a> <a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.utils.MCProd.html#52eddd74560fa276f934634af83eeaf4"><span class="id" title="notation">×</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Numbers.BinNums.html#Z"><span class="id" title="inductive">Z</span></a> <a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.utils.MCProd.html#52eddd74560fa276f934634af83eeaf4"><span class="id" title="notation">×</span></a> <a class="idref" href="ConCert.Embedding.Extraction.PreludeExt.html#address_coq"><span class="id" title="inductive">address_coq</span></a>)) : <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#option"><span class="id" title="inductive">option</span></a> <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#Crowdfunding.storage"><span class="id" title="abbreviation">storage</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#Some"><span class="id" title="constructor">Some</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">(</span></a><a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#setup:3"><span class="id" title="variable">setup</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">,</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">(</span></a><a class="idref" href="ConCert.Embedding.Extraction.PreludeExt.html#Maps.mnil"><span class="id" title="constructor">Maps.mnil</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">,</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#false"><span class="id" title="constructor">false</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">))</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a id="Crowdfunding.crowdfunding_init_eq_init" class="idref" href="#Crowdfunding.crowdfunding_init_eq_init"><span class="id" title="lemma">crowdfunding_init_eq_init</span></a> <a id="ctx:4" class="idref" href="#ctx:4"><span class="id" title="binder">ctx</span></a> <a id="setup:5" class="idref" href="#setup:5"><span class="id" title="binder">setup</span></a> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#ctx:4"><span class="id" title="variable">ctx</span></a>.(<a class="idref" href="ConCert.Execution.Blockchain.html#ctx_amount"><span class="id" title="projection">ctx_amount</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.ZArith.BinInt.html#f10153ef1a81fe79ed16d848b456c79b"><span class="id" title="notation">=?</span></a> 0 <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">-&gt;</span></a> <span class="comment">(*&nbsp;no&nbsp;money&nbsp;should&nbsp;be&nbsp;sent&nbsp;on&nbsp;deployment&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#Crowdfunding.crowdfunding_init"><span class="id" title="definition">crowdfunding_init</span></a> <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#ctx:4"><span class="id" title="variable">ctx</span></a> <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#setup:5"><span class="id" title="variable">setup</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Logic.html#6cd0f7b28b6092304087c7049437bb1a"><span class="id" title="notation">=</span></a> <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#Crowdfunding.init"><span class="id" title="definition">init</span></a> <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#setup:5"><span class="id" title="variable">setup</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">intros</span> <span class="id" title="var">Hamount</span>. <span class="id" title="tactic">unfold</span> <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#Crowdfunding.crowdfunding_init"><span class="id" title="definition">crowdfunding_init</span></a>. <span class="id" title="var">now</span> <span class="id" title="tactic">rewrite</span> <span class="id" title="var">Hamount</span>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Open</span> <span class="id" title="keyword">Scope</span> <span class="id" title="var">Z</span>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Import</span> <span class="id" title="var">SimpleBlockchainExt.AcornBlockchain</span>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Import</span> <span class="id" title="var">CrowdfundingDataExt</span>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Import</span> <span class="id" title="var">CrowdfundingContract.Receive</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="comment">(*&nbsp;We&nbsp;assume&nbsp;that&nbsp;there&nbsp;is&nbsp;a&nbsp;function&nbsp;converting&nbsp;addresses&nbsp;to&nbsp;<span class="inlinecode"><span class="id" title="var">nat</span></span>&nbsp;*)</span><br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Parameter</span> <a id="Crowdfunding.addr_to_nat" class="idref" href="#Crowdfunding.addr_to_nat"><span class="id" title="axiom">addr_to_nat</span></a> : <span class="id" title="keyword">forall</span> `{<a id="H:6" class="idref" href="#H:6"><span class="id" title="binder">ChainBase</span></a>}, <a class="idref" href="ConCert.Execution.Blockchain.html#Address"><span class="id" title="method">Blockchain.Address</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" title="inductive">nat</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a id="Crowdfunding.to_simple_ctx_addr" class="idref" href="#Crowdfunding.to_simple_ctx_addr"><span class="id" title="definition">to_simple_ctx_addr</span></a> `{<a id="H:8" class="idref" href="#H:8"><span class="id" title="binder">ChainBase</span></a>} (<a id="addr:9" class="idref" href="#addr:9"><span class="id" title="binder">addr</span></a> : <a class="idref" href="ConCert.Execution.Blockchain.html#Address"><span class="id" title="method">Blockchain.Address</span></a>) : <a class="idref" href="ConCert.Embedding.Extraction.PreludeExt.html#address_coq"><span class="id" title="inductive">address_coq</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">if</span> <a class="idref" href="ConCert.Execution.Blockchain.html#address_is_contract"><span class="id" title="method">address_is_contract</span></a> <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#addr:9"><span class="id" title="variable">addr</span></a> <span class="id" title="keyword">then</span> <a class="idref" href="ConCert.Embedding.Extraction.PreludeExt.html#ContractAddr_coq"><span class="id" title="constructor">ContractAddr_coq</span></a> (<a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#Crowdfunding.addr_to_nat"><span class="id" title="axiom">addr_to_nat</span></a> <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#addr:9"><span class="id" title="variable">addr</span></a>) <span class="id" title="keyword">else</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Embedding.Extraction.PreludeExt.html#UserAddr_coq"><span class="id" title="constructor">UserAddr_coq</span></a> (<a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#Crowdfunding.addr_to_nat"><span class="id" title="axiom">addr_to_nat</span></a> <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#addr:9"><span class="id" title="variable">addr</span></a>).<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a id="Crowdfunding.crowdfunding_receive_inner" class="idref" href="#Crowdfunding.crowdfunding_receive_inner"><span class="id" title="definition">crowdfunding_receive_inner</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a id="c:10" class="idref" href="#c:10"><span class="id" title="binder">c</span></a> : <a class="idref" href="ConCert.Execution.Blockchain.html#Chain"><span class="id" title="record">Chain</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a id="ctx:11" class="idref" href="#ctx:11"><span class="id" title="binder">ctx</span></a> : <a class="idref" href="ConCert.Execution.Blockchain.html#ContractCallContext"><span class="id" title="record">ContractCallContext</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a id="params:12" class="idref" href="#params:12"><span class="id" title="binder">params</span></a> : <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingDataExt.html#msg_coq"><span class="id" title="inductive">msg_coq</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a id="st:13" class="idref" href="#st:13"><span class="id" title="binder">st</span></a> : <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#Crowdfunding.storage"><span class="id" title="abbreviation">storage</span></a>) : <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#option"><span class="id" title="inductive">option</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="ConCert.Embedding.Extraction.SimpleBlockchainExt.html#AcornBlockchain.SimpleActionBody_coq"><span class="id" title="inductive">SimpleActionBody_coq</span></a> <a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.utils.MCProd.html#52eddd74560fa276f934634af83eeaf4"><span class="id" title="notation">×</span></a> <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#Crowdfunding.storage"><span class="id" title="abbreviation">storage</span></a>) :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingExt.html#CrowdfundingContract.Receive.receive"><span class="id" title="definition">receive</span></a> <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#params:12"><span class="id" title="variable">params</span></a> <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#st:13"><span class="id" title="variable">st</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">(</span></a><a class="idref" href="ConCert.Embedding.Extraction.PreludeExt.html#Time_coq"><span class="id" title="constructor">Time_coq</span></a> <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#c:10"><span class="id" title="variable">c</span></a>.(<a class="idref" href="ConCert.Execution.Blockchain.html#current_slot"><span class="id" title="projection">current_slot</span></a>)<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">,</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">(</span></a><a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#Crowdfunding.to_simple_ctx_addr"><span class="id" title="definition">to_simple_ctx_addr</span></a> <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#ctx:11"><span class="id" title="variable">ctx</span></a>.(<a class="idref" href="ConCert.Execution.Blockchain.html#ctx_from"><span class="id" title="projection">ctx_from</span></a>)<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">,</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">(</span></a><a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#ctx:11"><span class="id" title="variable">ctx</span></a>.(<a class="idref" href="ConCert.Execution.Blockchain.html#ctx_amount"><span class="id" title="projection">ctx_amount</span></a>)<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">,</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#ctx:11"><span class="id" title="variable">ctx</span></a>.(<a class="idref" href="ConCert.Execution.Blockchain.html#ctx_contract_balance"><span class="id" title="projection">ctx_contract_balance</span></a>)<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">)))</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a id="Crowdfunding.crowdfunding_receive" class="idref" href="#Crowdfunding.crowdfunding_receive"><span class="id" title="definition">crowdfunding_receive</span></a> (<a id="c:14" class="idref" href="#c:14"><span class="id" title="binder">c</span></a> : <a class="idref" href="ConCert.Execution.Blockchain.html#Chain"><span class="id" title="record">Chain</span></a>) (<a id="ctx:15" class="idref" href="#ctx:15"><span class="id" title="binder">ctx</span></a> : <a class="idref" href="ConCert.Execution.Blockchain.html#ContractCallContext"><span class="id" title="record">ContractCallContext</span></a>) <a id="st:16" class="idref" href="#st:16"><span class="id" title="binder">st</span></a> <a id="msg:17" class="idref" href="#msg:17"><span class="id" title="binder">msg</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#msg:17"><span class="id" title="variable">msg</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#Some"><span class="id" title="constructor">Some</span></a> <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingDataExt.html#msg"><span class="id" title="definition">msg</span></a> =&gt; <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#Crowdfunding.crowdfunding_receive_inner"><span class="id" title="definition">crowdfunding_receive_inner</span></a> <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#c:14"><span class="id" title="variable">c</span></a> <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#ctx:15"><span class="id" title="variable">ctx</span></a> <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#msg:17"><span class="id" title="variable">msg</span></a> <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#st:16"><span class="id" title="variable">st</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#None"><span class="id" title="constructor">None</span></a> =&gt; <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#None"><span class="id" title="constructor">None</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a id="Crowdfunding.CF_MODULE" class="idref" href="#Crowdfunding.CF_MODULE"><span class="id" title="definition">CF_MODULE</span></a> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Extraction.CameLIGOExtract.html#CameLIGOMod"><span class="id" title="record">CameLIGOMod</span></a> <span class="id" title="var">_</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span> <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#Crowdfunding.storage"><span class="id" title="abbreviation">storage</span></a> <a class="idref" href="ConCert.Embedding.Extraction.SimpleBlockchainExt.html#AcornBlockchain.SimpleActionBody_coq"><span class="id" title="inductive">SimpleActionBody_coq</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{| <span class="comment">(*&nbsp;a&nbsp;name&nbsp;for&nbsp;the&nbsp;definition&nbsp;with&nbsp;the&nbsp;extracted&nbsp;code&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Extraction.CameLIGOExtract.html#lmd_module_name"><span class="id" title="projection">lmd_module_name</span></a> := "cameLIGO_crowdfunding" ;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;definitions&nbsp;of&nbsp;operations&nbsp;on&nbsp;pairs&nbsp;and&nbsp;ints&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Extraction.CameLIGOExtract.html#lmd_prelude"><span class="id" title="projection">lmd_prelude</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Extraction.CameLIGOPretty.html#CameLIGOPrelude"><span class="id" title="definition">CameLIGOPrelude</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> <a class="idref" href="ConCert.Extraction.Common.html#nl"><span class="id" title="definition">nl</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> <a class="idref" href="ConCert.Extraction.Common.html#nl"><span class="id" title="definition">nl</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> "let test_account : address = (""tz1KqTpEZ7Yob7QbPE4Hy4Wo8fHG8LhKxZSx"" : address)"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> <a class="idref" href="ConCert.Extraction.Common.html#nl"><span class="id" title="definition">nl</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> "let init_storage :  (timestamp * (tez * address)) =
+          (Tezos.get_now (), (42tez,(""tz1KqTpEZ7Yob7QbPE4Hy4Wo8fHG8LhKxZSx"": address)))";<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;initial&nbsp;storage&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Extraction.CameLIGOExtract.html#lmd_init"><span class="id" title="projection">lmd_init</span></a> := <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#Crowdfunding.init"><span class="id" title="definition">init</span></a> ;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;init&nbsp;requires&nbsp;some&nbsp;extra&nbsp;operations&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Extraction.CameLIGOExtract.html#lmd_init_prelude"><span class="id" title="projection">lmd_init_prelude</span></a> := "";<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Extraction.CameLIGOExtract.html#lmd_receive_prelude"><span class="id" title="projection">lmd_receive_prelude</span></a> := "";<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;the&nbsp;main&nbsp;functionality&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Extraction.CameLIGOExtract.html#lmd_receive"><span class="id" title="projection">lmd_receive</span></a> := <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#Crowdfunding.crowdfunding_receive"><span class="id" title="definition">crowdfunding_receive</span></a>;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;code&nbsp;for&nbsp;the&nbsp;entry&nbsp;point&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Extraction.CameLIGOExtract.html#lmd_entry_point"><span class="id" title="projection">lmd_entry_point</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type storage = ((time_coq * (tez * address)) * ((address,tez) map * bool))" <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> <a class="idref" href="ConCert.Extraction.Common.html#nl"><span class="id" title="definition">nl</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#169ad156fbc6036a53a0338819a2b301"><span class="id" title="notation">++</span></a> <a class="idref" href="ConCert.Extraction.CameLIGOPretty.html#printMain"><span class="id" title="definition">CameLIGOPretty.printMain</span></a> "crowdfunding_receive"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"msg_coq"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"storage" |}.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+We run the extraction procedure inside the <span class="inlinecode"><span class="id" title="library">TemplateMonad</span></span>.
+      It uses the certified erasure from <span class="inlinecode"><span class="id" title="var">MetaCoq</span></span> and the certified deboxing procedure
+      that removes application of boxes to constants and constructors. 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">End</span> <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#Crowdfunding"><span class="id" title="module">Crowdfunding</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">Section</span> <a id="CrowdfundingExtraction" class="idref" href="#CrowdfundingExtraction"><span class="id" title="section">CrowdfundingExtraction</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Import</span> <span class="id" title="var">Crowdfunding</span>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Import</span> <span class="id" title="var">SimpleBlockchainExt.AcornBlockchain</span>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Import</span> <span class="id" title="var">CrowdfundingDataExt</span>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Import</span> <span class="id" title="var">CrowdfundingContract.Receive</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a id="TT_remap_crowdfunding" class="idref" href="#TT_remap_crowdfunding"><span class="id" title="definition">TT_remap_crowdfunding</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> (<a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.Kernames.html#kername"><span class="id" title="definition">kername</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#11c698c8685bb8ab1cf725545c085ac4"><span class="id" title="notation">*</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">String.string</span></a>) :=<br/>
+<br/>
+&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">[</span></a>  <span class="comment">(*&nbsp;types&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Extraction.Common.html#remap"><span class="id" title="definition">remap</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">&lt;%%</span></a> <a class="idref" href="ConCert.Embedding.Extraction.PreludeExt.html#address_coq"><span class="id" title="inductive">address_coq</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">%%&gt;</span></a> "address"<br/>
+&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a> <a class="idref" href="ConCert.Extraction.Common.html#remap"><span class="id" title="definition">remap</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">&lt;%%</span></a> <a class="idref" href="ConCert.Embedding.Extraction.SimpleBlockchainExt.html#AcornBlockchain.SimpleActionBody_coq"><span class="id" title="inductive">SimpleActionBody_coq</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">%%&gt;</span></a> "operation"<br/>
+&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a> <a class="idref" href="ConCert.Extraction.Common.html#remap"><span class="id" title="definition">remap</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">&lt;%%</span></a> <a class="idref" href="ConCert.Embedding.Extraction.PreludeExt.html#Maps.addr_map_coq"><span class="id" title="inductive">Maps.addr_map_coq</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">%%&gt;</span></a> "(address,tez) map"<br/>
+<br/>
+&nbsp;&nbsp;<span class="comment">(*&nbsp;simple&nbsp;addresses&nbsp;and&nbsp;the&nbsp;execution&nbsp;layer&nbsp;addresses&nbsp;are&nbsp;treated&nbsp;as&nbsp;the&nbsp;same&nbsp;*)</span><br/>
+&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a> <a class="idref" href="ConCert.Extraction.Common.html#remap"><span class="id" title="definition">remap</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">&lt;%%</span></a> @<a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#to_simple_ctx_addr"><span class="id" title="definition">to_simple_ctx_addr</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">%%&gt;</span></a> "(fun (x : address) -&gt; x)"<br/>
+<br/>
+&nbsp;&nbsp;<span class="comment">(*&nbsp;operations&nbsp;*)</span><br/>
+&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a> <a class="idref" href="ConCert.Extraction.Common.html#remap"><span class="id" title="definition">remap</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">&lt;%%</span></a> <a class="idref" href="ConCert.Embedding.Extraction.PreludeExt.html#eqb_addr"><span class="id" title="definition">eqb_addr</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">%%&gt;</span></a> "eq_addr"<br/>
+&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a> <a class="idref" href="ConCert.Extraction.Common.html#remap"><span class="id" title="definition">remap</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">&lt;%%</span></a> <a class="idref" href="ConCert.Embedding.Extraction.PreludeExt.html#Maps.add_map"><span class="id" title="definition">Maps.add_map</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">%%&gt;</span></a> "Map.add"<br/>
+&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a> <a class="idref" href="ConCert.Extraction.Common.html#remap"><span class="id" title="definition">remap</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">&lt;%%</span></a> <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingExt.html#CrowdfundingContract.Receive.lookup_map'"><span class="id" title="definition">lookup_map'</span></a> <a class="idref" href="ConCert.Extraction.Common.html#f91ac6598892630a2bddbf8938e1b2db"><span class="id" title="notation">%%&gt;</span></a> "Map.find_opt"<br/>
+&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">]</span></a>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+A translation table of constructors and some constants. The corresponding definitions will be extracted and renamed. 
+</div>
+<div class="code">
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a id="TT_rename" class="idref" href="#TT_rename"><span class="id" title="definition">TT_rename</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">[</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">(</span></a>"nil"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">,</span></a> "[]"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">)</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">(</span></a>"mnil"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">,</span></a> "Map.empty"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"><span class="id" title="notation">)</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">]</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Time</span> <span class="id" title="var">MetaCoq</span> <span class="id" title="var">Run</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="ConCert.Extraction.CameLIGOExtract.html#CameLIGO_prepare_extraction"><span class="id" title="definition">CameLIGO_prepare_extraction</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#ae9a5e1034e143b218b09d8e454472bd"><span class="id" title="notation">[]</span></a> <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#TT_remap_crowdfunding"><span class="id" title="definition">TT_remap_crowdfunding</span></a> (<a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#TT_rename"><span class="id" title="definition">TT_rename</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#bc347c51eaf667706ae54503b26d52c6"><span class="id" title="notation">++</span></a> <a class="idref" href="ConCert.Extraction.CameLIGOExtract.html#TT_rename_ctors_default"><span class="id" title="definition">TT_rename_ctors_default</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#ae9a5e1034e143b218b09d8e454472bd"><span class="id" title="notation">[]</span></a> "cctx_instance" <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#CF_MODULE"><span class="id" title="definition">CF_MODULE</span></a>).<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Time</span> <span class="id" title="keyword">Definition</span> <a id="cameLIGO_crowdfunding" class="idref" href="#cameLIGO_crowdfunding"><span class="id" title="definition">cameLIGO_crowdfunding</span></a> := <span class="id" title="keyword">Eval</span> <span class="id" title="keyword">vm_compute</span> <span class="id" title="tactic">in</span> <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#cameLIGO_crowdfunding_prepared"><span class="id" title="definition">cameLIGO_crowdfunding_prepared</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="var">MetaCoq</span> <span class="id" title="var">Run</span> (<a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.TemplateMonad.Core.html#tmMsg"><span class="id" title="constructor">tmMsg</span></a> (<a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.utils.bytestring.html#String.of_string"><span class="id" title="definition">String.of_string</span></a> <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#cameLIGO_crowdfunding"><span class="id" title="definition">cameLIGO_crowdfunding</span></a>)).<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+We redirect the extraction result for later processing and compiling with the CameLIGO compiler 
+</div>
+<div class="code">
+&nbsp;&nbsp;<span class="id" title="var">Redirect</span> "../extraction/tests/extracted-code/cameligo-extract/CrowdfundingCertifiedExtraction.mligo"<br/>
+&nbsp;&nbsp;<span class="id" title="var">MetaCoq</span> <span class="id" title="var">Run</span> (<a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.TemplateMonad.Core.html#tmMsg"><span class="id" title="constructor">tmMsg</span></a> (<a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.utils.bytestring.html#String.of_string"><span class="id" title="definition">String.of_string</span></a> <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#cameLIGO_crowdfunding"><span class="id" title="definition">cameLIGO_crowdfunding</span></a>)).<br/>
+
+<br/>
+<span class="id" title="keyword">End</span> <a class="idref" href="ConCert.Examples.Crowdfunding.CrowdfundingCameLIGO.html#CrowdfundingExtraction"><span class="id" title="section">CrowdfundingExtraction</span></a>.<br/>
+</div>
+</div>
+<div id="footer">
+  Generated by <a href="https://coq.inria.fr/">coqdoc</a> and improved with <a href="https://github.com/tebbi/coqdocjs">CoqdocJS</a> and <a href="https://github.com/jgallen23/toc">TOC</a>
+</div>
+</div>
+<script>
+  const elements = document.getElementsByClassName("libtitle");
+  while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+  }
+  if (window.location.pathname.endsWith("/toc.html")) {
+      const jstocDiv = document.getElementById("js-toc");
+      jstocDiv.classList.remove("toc");
+      jstocDiv.classList.add("jstoc-hidden");
+      const jstocHeaderDiv = document.getElementById("js-toc-header");
+      jstocHeaderDiv.classList.add("jstoc-hidden");
+      const mainDiv = document.getElementById("main");
+      mainDiv.classList.add("jstoc-hidden-main");
+      const toggleDiv = document.getElementById("toggle-toc");
+      toggleDiv.classList.add("jstoc-hidden");
+  }
+  console.log(window.location.pathname);
+</script>
+<script type="text/javascript" src="toc.js"></script>
+</body>
+
+</html>

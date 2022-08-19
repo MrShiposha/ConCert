@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<link href="coqdoc.css" rel="stylesheet" type="text/css" />
+<link href="coqdocjs.css" rel="stylesheet" type="text/css"/>
+<link href="toc.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="config.js"></script>
+<script type="text/javascript" src="coqdocjs.js"></script>
+</head>
+
+<body onload="document.getElementById('content').focus()">
+  <div id="header">
+    <span class="left">
+      <span class="modulename"> <script> document.write(document.title) </script> </span>
+      <span id="toggle-toc">Contents</span>
+    </span>
+
+    <span class="button" id="toggle-proofs"></span>
+
+    <span class="right">
+      <a href="https://github.com/AU-COBRA/ConCert" target="_balnk">Project Page</a>
+      <a href="index.html">Index</a>
+      <a href="toc.html">Table of contents</a>
+    </span>
+</div>
+  <div id="content" tabindex="-1" onblur="document.getElementById('content').focus()">
+    <div id="js-toc" class="toc" data-toc="h1,h2,h3,h4" data-toc-container="doc" data-toc-offset="-40">
+      <div id="js-toc-header" class="toc-header">Contents:</div>
+    </div>
+    <div id="main">
+<h1 class="libtitle">Library ConCert.Extraction.PluginExtract</h1>
+
+<div class="code">
+</div>
+
+<div class="doc">
+<a id="lab5"></a><h1 class="section">Definitions below are used in the extracted plugin</h1>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Extraction</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Extraction.ExAst.html#"><span class="id" title="library">ExAst</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Extraction</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Extraction.Extraction.html#"><span class="id" title="library">Extraction</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Extraction</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Extraction.PrettyPrinterMonad.html#"><span class="id" title="library">PrettyPrinterMonad</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Extraction</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Extraction.Printing.html#"><span class="id" title="library">Printing</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Extraction</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Extraction.ResultMonad.html#"><span class="id" title="library">ResultMonad</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Extraction</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Extraction.Utils.html#"><span class="id" title="library">Utils</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">ConCert.Extraction</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="ConCert.Extraction.RustExtract.html#"><span class="id" title="library">RustExtract</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">MetaCoq.Template</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.Kernames.html#"><span class="id" title="library">Kernames</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">MetaCoq.Template</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.monad_utils.html#"><span class="id" title="library">monad_utils</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">Coq</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#"><span class="id" title="library">List</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">Coq</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Strings.String.html#"><span class="id" title="library">String</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">Import</span> <span class="id" title="var">ListNotations</span>.<br/>
+<span class="id" title="keyword">Import</span> <span class="id" title="var">MCMonadNotation</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Open</span> <span class="id" title="keyword">Scope</span> <span class="id" title="var">string</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Local</span> <span class="id" title="keyword">Instance</span> <a id="plugin_extract_preamble" class="idref" href="#plugin_extract_preamble"><span class="id" title="instance">plugin_extract_preamble</span></a> : <a class="idref" href="ConCert.Extraction.RustExtract.html#Preamble"><span class="id" title="class">Preamble</span></a> :=<br/>
+{| <a class="idref" href="ConCert.Extraction.RustExtract.html#top_preamble"><span class="id" title="method">top_preamble</span></a> := <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">[</span></a><br/>
+"#![allow(dead_code)]"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"#![allow(non_camel_case_types)]"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"#![allow(unused_imports)]"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"#![allow(non_snake_case)]"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"#![allow(unused_variables)]"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+""<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"use std::marker::PhantomData;"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+""<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"fn __nat_succ(x: u64) -&gt; u64 {"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"  x.checked_add(1).unwrap()"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"}"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+""<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"macro_rules! __nat_elim {"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"    ($zcase:expr, $pred:ident, $scase:expr, $val:expr) =&gt; {"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"        { let v = $val;"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"        if v == 0 { $zcase } else { let $pred = v - 1; $scase } }"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"    }"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"}"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+""<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"macro_rules! __andb { ($b1:expr, $b2:expr) =&gt; { $b1 &amp;&amp; $b2 } }"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"macro_rules! __orb { ($b1:expr, $b2:expr) =&gt; { $b1 || $b2 } }"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+""<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"fn __pos_onebit(x: u64) -&gt; u64 {"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"  x.checked_mul(2).unwrap() + 1"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"}"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+""<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"fn __pos_zerobit(x: u64) -&gt; u64 {"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"  x.checked_mul(2).unwrap()"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"}"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+""<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"macro_rules! __pos_elim {"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"    ($p:ident, $onebcase:expr, $p2:ident, $zerobcase:expr, $onecase:expr, $val:expr) =&gt; {"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"        {"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"            let n = $val;"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"            if n == 1 {"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"                $onecase"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"            } else if (n &amp; 1) == 0 {"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"                let $p2 = n &gt;&gt; 1;"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"                $zerobcase"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"            } else {"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"                let $p = n &gt;&gt; 1;"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"                $onebcase"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"            }"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"        }"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"    }"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"}"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+""<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"fn __Z_frompos(z: u64) -&gt; i64 {"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"  use std::convert::TryFrom;"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+""<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"  i64::try_from(z).unwrap()"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"}"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+""<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"fn __Z_fromneg(z : u64) -&gt; i64 {"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"  use std::convert::TryFrom;"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+""<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"  i64::try_from(z).unwrap().checked_neg().unwrap()"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"}"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+""<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"macro_rules! __Z_elim {"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"    ($zero_case:expr, $p:ident, $pos_case:expr, $p2:ident, $neg_case:expr, $val:expr) =&gt; {"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"        {"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"            let n = $val;"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"            if n == 0 {"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"                $zero_case"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"            } else if n &lt; 0 {"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"                let $p2 = n.unsigned_abs();"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"                $neg_case"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"            } else {"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"                let $p = n as u64;"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"                $pos_case"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"            }"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"        }"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"    }"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"}"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+""<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"fn __N_frompos(z: u64) -&gt; u64 {"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"  z"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"}"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+""<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"macro_rules! __N_elim {"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"    ($zero_case:expr, $p:ident, $pos_case:expr, $val:expr) =&gt; {"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"        { let $p = $val; if $p == 0 { $zero_case } else { $pos_case } }"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"    }"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"}"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+""<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"type __pair&lt;A, B&gt; = (A, B);"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+""<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"macro_rules! __pair_elim {"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"    ($fst:ident, $snd:ident, $body:expr, $p:expr) =&gt; {"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"        { let ($fst, $snd) = $p; $body }"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"    }"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"}"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+""<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"fn __mk_pair&lt;A: Copy, B: Copy&gt;(a: A, b: B) -&gt; __pair&lt;A, B&gt; { (a, b) }"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+""<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"fn hint_app&lt;TArg, TRet&gt;(f: &amp;dyn Fn(TArg) -&gt; TRet) -&gt; &amp;dyn Fn(TArg) -&gt; TRet {"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"  f"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"}" <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">]</span></a>;<br/>
+<a class="idref" href="ConCert.Extraction.RustExtract.html#program_preamble"><span class="id" title="method">program_preamble</span></a> := <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">[</span></a><br/>
+"fn alloc&lt;T&gt;(&amp;'a self, t: T) -&gt; &amp;'a T {"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"  self.__alloc.alloc(t)"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"}"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+""<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"fn closure&lt;TArg, TRet&gt;(&amp;'a self, F: impl Fn(TArg) -&gt; TRet + 'a) -&gt; &amp;'a dyn Fn(TArg) -&gt; TRet {"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"  self.__alloc.alloc(F)"<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">;</span></a><br/>
+"}" <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#e76c6291366b599375c28eba0aae94bb"><span class="id" title="notation">]</span></a> |}.<br/>
+
+<br/>
+<span class="id" title="keyword">Instance</span> <a id="RustConfig" class="idref" href="#RustConfig"><span class="id" title="instance">RustConfig</span></a> : <a class="idref" href="ConCert.Extraction.RustExtract.html#RustPrintConfig"><span class="id" title="class">RustPrintConfig</span></a> :=<br/>
+&nbsp;&nbsp;{| <a class="idref" href="ConCert.Extraction.RustExtract.html#term_box_symbol"><span class="id" title="method">term_box_symbol</span></a> := "()";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Extraction.RustExtract.html#type_box_symbol"><span class="id" title="method">type_box_symbol</span></a> := "()";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Extraction.RustExtract.html#any_type_symbol"><span class="id" title="method">any_type_symbol</span></a> := "()";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Extraction.RustExtract.html#print_full_names"><span class="id" title="method">print_full_names</span></a> := <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#true"><span class="id" title="constructor">true</span></a> |}.<br/>
+
+<br/>
+<span class="id" title="keyword">Definition</span> <a id="default_attrs" class="idref" href="#default_attrs"><span class="id" title="definition">default_attrs</span></a> : <a class="idref" href="ConCert.Extraction.RustExtract.html#ind_attr_map"><span class="id" title="definition">ind_attr_map</span></a> := <span class="id" title="keyword">fun</span> <span class="id" title="var">_</span> =&gt; "#[derive(Debug, Clone)]".<br/>
+
+<br/>
+<span class="id" title="keyword">Module</span> <a id="T" class="idref" href="#T"><span class="id" title="module">T</span></a>:=<a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.Ast.html#Env"><span class="id" title="module">Ast.Env</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">Definition</span> <a id="extract_lines" class="idref" href="#extract_lines"><span class="id" title="definition">extract_lines</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a id="p:1" class="idref" href="#p:1"><span class="id" title="binder">p</span></a> : <a class="idref" href="ConCert.Extraction.PluginExtract.html#program"><span class="id" title="definition">T.program</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a id="remaps:2" class="idref" href="#remaps:2"><span class="id" title="binder">remaps</span></a> : <a class="idref" href="ConCert.Extraction.Printing.html#remaps"><span class="id" title="record">remaps</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a id="should_inline:3" class="idref" href="#should_inline:3"><span class="id" title="binder">should_inline</span></a> : <a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.Kernames.html#kername"><span class="id" title="definition">kername</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#bool"><span class="id" title="inductive">bool</span></a>) : <a class="idref" href="ConCert.Extraction.ResultMonad.html#result"><span class="id" title="inductive">result</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.utils.bytestring.html#string"><span class="id" title="abbreviation">bytestring.string</span></a>) <a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.utils.bytestring.html#string"><span class="id" title="abbreviation">bytestring.string</span></a>  :=<br/>
+&nbsp;&nbsp;<a id="entry:4" class="idref" href="#entry:4"><span class="id" title="binder">entry</span></a> <a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.monad_utils.html#6bec7af38cdf877f357faf8f1699c8f9"><span class="id" title="notation">&lt;-</span></a> <span class="id" title="keyword">match</span> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#snd"><span class="id" title="definition">snd</span></a> <a class="idref" href="ConCert.Extraction.PluginExtract.html#p:1"><span class="id" title="variable">p</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="ConCert.Extraction.RustExtract.html#T.tConst"><span class="id" title="constructor">T.tConst</span></a> <span class="id" title="var">kn</span> <span class="id" title="var">_</span> =&gt; <a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.monad_utils.html#ret"><span class="id" title="method">ret</span></a> <span class="id" title="var">kn</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="ConCert.Extraction.RustExtract.html#T.tInd"><span class="id" title="constructor">T.tInd</span></a> <span class="id" title="var">ind</span> <span class="id" title="var">_</span> =&gt; <a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.monad_utils.html#ret"><span class="id" title="method">ret</span></a> (<a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.Kernames.html#inductive_mind"><span class="id" title="projection">inductive_mind</span></a> <span class="id" title="var">ind</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" title="var">_</span> =&gt; <a class="idref" href="ConCert.Extraction.ResultMonad.html#Err"><span class="id" title="constructor">Err</span></a> (<a class="idref" href="ConCert.Extraction.PrettyPrinterMonad.html#s_to_bs"><span class="id" title="abbreviation">s_to_bs</span></a> "Expected program to be a tConst or tInd")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span><a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.monad_utils.html#6bec7af38cdf877f357faf8f1699c8f9"><span class="id" title="notation">;;</span></a><br/>
+&nbsp;&nbsp;<span class="id" title="keyword">let</span> <a id="without_deps:6" class="idref" href="#without_deps:6"><span class="id" title="binder">without_deps</span></a> <a id="kn:5" class="idref" href="#kn:5"><span class="id" title="binder">kn</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">if</span> <a class="idref" href="ConCert.Extraction.Printing.html#remap_inductive"><span class="id" title="projection">remap_inductive</span></a> <a class="idref" href="ConCert.Extraction.PluginExtract.html#remaps:2"><span class="id" title="variable">remaps</span></a> (<a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.Kernames.html#mkInd"><span class="id" title="constructor">mkInd</span></a> <a class="idref" href="ConCert.Extraction.PluginExtract.html#kn:5"><span class="id" title="variable">kn</span></a> 0) <span class="id" title="keyword">then</span> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#true"><span class="id" title="constructor">true</span></a> <span class="id" title="keyword">else</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">if</span> <a class="idref" href="ConCert.Extraction.Printing.html#remap_constant"><span class="id" title="projection">remap_constant</span></a> <a class="idref" href="ConCert.Extraction.PluginExtract.html#remaps:2"><span class="id" title="variable">remaps</span></a> <a class="idref" href="ConCert.Extraction.PluginExtract.html#kn:5"><span class="id" title="variable">kn</span></a> <span class="id" title="keyword">then</span> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#true"><span class="id" title="constructor">true</span></a> <span class="id" title="keyword">else</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">if</span> <a class="idref" href="ConCert.Extraction.Printing.html#remap_inline_constant"><span class="id" title="projection">remap_inline_constant</span></a> <a class="idref" href="ConCert.Extraction.PluginExtract.html#remaps:2"><span class="id" title="variable">remaps</span></a> <a class="idref" href="ConCert.Extraction.PluginExtract.html#kn:5"><span class="id" title="variable">kn</span></a> <span class="id" title="keyword">then</span> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#true"><span class="id" title="constructor">true</span></a> <span class="id" title="keyword">else</span> <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#false"><span class="id" title="constructor">false</span></a> <span class="id" title="tactic">in</span><br/>
+&nbsp;&nbsp;<a id="0f7fdea5e8c25e3e1a79edf27e9de540" class="idref" href="#0f7fdea5e8c25e3e1a79edf27e9de540"><span class="id" title="binder">Σ</span></a> <a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.monad_utils.html#6bec7af38cdf877f357faf8f1699c8f9"><span class="id" title="notation">&lt;-</span></a> <a class="idref" href="ConCert.Extraction.Extraction.html#extract_template_env"><span class="id" title="definition">extract_template_env</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="ConCert.Extraction.RustExtract.html#extract_rust_within_coq"><span class="id" title="definition">extract_rust_within_coq</span></a> (<span class="id" title="keyword">fun</span> <span class="id" title="var">_</span> =&gt; <a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#None"><span class="id" title="constructor">None</span></a>) <a class="idref" href="ConCert.Extraction.PluginExtract.html#should_inline:3"><span class="id" title="variable">should_inline</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Init.Datatypes.html#fst"><span class="id" title="definition">fst</span></a> <a class="idref" href="ConCert.Extraction.PluginExtract.html#p:1"><span class="id" title="variable">p</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.Kernames.html#KernameSet.singleton"><span class="id" title="definition">KernameSet.singleton</span></a> <a class="idref" href="ConCert.Extraction.PluginExtract.html#entry:4"><span class="id" title="variable">entry</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="ConCert.Extraction.PluginExtract.html#without_deps:6"><span class="id" title="variable">without_deps</span></a><a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.monad_utils.html#6bec7af38cdf877f357faf8f1699c8f9"><span class="id" title="notation">;;</span></a><br/>
+&nbsp;&nbsp;<span class="id" title="keyword">let</span> <a id="p:8" class="idref" href="#p:8"><span class="id" title="binder">p</span></a> := <a class="idref" href="ConCert.Extraction.RustExtract.html#print_program"><span class="id" title="definition">print_program</span></a> <a class="idref" href="ConCert.Extraction.PluginExtract.html#0f7fdea5e8c25e3e1a79edf27e9de540"><span class="id" title="variable">Σ</span></a> <a class="idref" href="ConCert.Extraction.PluginExtract.html#remaps:2"><span class="id" title="variable">remaps</span></a> <a class="idref" href="ConCert.Extraction.PluginExtract.html#default_attrs"><span class="id" title="definition">default_attrs</span></a> <span class="id" title="tactic">in</span><br/>
+&nbsp;&nbsp;<a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.monad_utils.html#254b85403bdb9d2adf407ad8f41a76a6"><span class="id" title="notation">'</span></a><a id="pat:11" class="idref" href="#pat:11"><span class="id" title="binder">(</span></a><a id="pat:11" class="idref" href="#pat:11"><span class="id" title="binder">_</span></a><a id="pat:11" class="idref" href="#pat:11"><span class="id" title="binder">,</span></a> <a id="pat:11" class="idref" href="#pat:11"><span class="id" title="binder">s</span></a><a id="pat:11" class="idref" href="#pat:11"><span class="id" title="binder">)</span></a> <a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.monad_utils.html#254b85403bdb9d2adf407ad8f41a76a6"><span class="id" title="notation">&lt;-</span></a> <a class="idref" href="ConCert.Extraction.Utils.html#timed"><span class="id" title="definition">timed</span></a> "Printing" (<span class="id" title="keyword">fun</span> <span class="id" title="var">_</span> =&gt; <a class="idref" href="ConCert.Extraction.ResultMonad.html#map_error"><span class="id" title="definition">map_error</span></a> (<span class="id" title="keyword">fun</span> <a id="x:9" class="idref" href="#x:9"><span class="id" title="binder">x</span></a> =&gt; <a class="idref" href="ConCert.Extraction.PrettyPrinterMonad.html#s_to_bs"><span class="id" title="abbreviation">s_to_bs</span></a> <a class="idref" href="ConCert.Extraction.PluginExtract.html#x:9"><span class="id" title="variable">x</span></a>) (<a class="idref" href="ConCert.Extraction.PrettyPrinterMonad.html#finish_print_lines"><span class="id" title="definition">finish_print_lines</span></a> <a class="idref" href="ConCert.Extraction.PluginExtract.html#p:8"><span class="id" title="variable">p</span></a>))<a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.monad_utils.html#254b85403bdb9d2adf407ad8f41a76a6"><span class="id" title="notation">;;</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="ConCert.Extraction.ResultMonad.html#Ok"><span class="id" title="constructor">Ok</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/V8.11.2/stdlib/Coq.Lists.List.html#map"><span class="id" title="definition">map</span></a> <a class="idref" href="ConCert.Extraction.PrettyPrinterMonad.html#s_to_bs"><span class="id" title="abbreviation">s_to_bs</span></a> <a class="idref" href="ConCert.Extraction.PluginExtract.html#s:10"><span class="id" title="variable">s</span></a>).<br/>
+
+<br/>
+<span class="id" title="keyword">Definition</span> <a id="extract" class="idref" href="#extract"><span class="id" title="definition">extract</span></a> <a id="p:12" class="idref" href="#p:12"><span class="id" title="binder">p</span></a> <a id="remaps:13" class="idref" href="#remaps:13"><span class="id" title="binder">remaps</span></a> <a id="should_inline:14" class="idref" href="#should_inline:14"><span class="id" title="binder">should_inline</span></a> :=<br/>
+&nbsp;&nbsp;<a id="lines:15" class="idref" href="#lines:15"><span class="id" title="binder">lines</span></a> <a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.monad_utils.html#6bec7af38cdf877f357faf8f1699c8f9"><span class="id" title="notation">&lt;-</span></a> <a class="idref" href="ConCert.Extraction.PluginExtract.html#extract_lines"><span class="id" title="definition">extract_lines</span></a> <a class="idref" href="ConCert.Extraction.PluginExtract.html#p:12"><span class="id" title="variable">p</span></a> <a class="idref" href="ConCert.Extraction.PluginExtract.html#remaps:13"><span class="id" title="variable">remaps</span></a> <a class="idref" href="ConCert.Extraction.PluginExtract.html#should_inline:14"><span class="id" title="variable">should_inline</span></a><a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.monad_utils.html#6bec7af38cdf877f357faf8f1699c8f9"><span class="id" title="notation">;;</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.monad_utils.html#ret"><span class="id" title="method">ret</span></a> (<a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.utils.bytestring.html#String.concat"><span class="id" title="definition">bytestring.String.concat</span></a> <a class="idref" href="https://metacoq.github.io/html/MetaCoq.Template.utils.MCString.html#nl"><span class="id" title="definition">MCString.nl</span></a> <a class="idref" href="ConCert.Extraction.PluginExtract.html#lines:15"><span class="id" title="variable">lines</span></a>).<br/>
+</div>
+</div>
+<div id="footer">
+  Generated by <a href="https://coq.inria.fr/">coqdoc</a> and improved with <a href="https://github.com/tebbi/coqdocjs">CoqdocJS</a> and <a href="https://github.com/jgallen23/toc">TOC</a>
+</div>
+</div>
+<script>
+  const elements = document.getElementsByClassName("libtitle");
+  while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+  }
+  if (window.location.pathname.endsWith("/toc.html")) {
+      const jstocDiv = document.getElementById("js-toc");
+      jstocDiv.classList.remove("toc");
+      jstocDiv.classList.add("jstoc-hidden");
+      const jstocHeaderDiv = document.getElementById("js-toc-header");
+      jstocHeaderDiv.classList.add("jstoc-hidden");
+      const mainDiv = document.getElementById("main");
+      mainDiv.classList.add("jstoc-hidden-main");
+      const toggleDiv = document.getElementById("toggle-toc");
+      toggleDiv.classList.add("jstoc-hidden");
+  }
+  console.log(window.location.pathname);
+</script>
+<script type="text/javascript" src="toc.js"></script>
+</body>
+
+</html>
